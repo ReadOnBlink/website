@@ -1,0 +1,864 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;700&family=Nunito:wght@500;800&display=swap");
+
+html,
+body {
+  background: var(--bg);
+  color: white;
+  font-family: "Nunito", sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #120e1b;
+  --accent: #8c52ff;
+}
+
+main #menu {
+  position: absolute;
+  z-index: 25;
+  background: var(--bg);
+  left: 100%;
+  transition: 0.5s ease;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+main #menu .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 56px 8px;
+}
+
+main #menu .controls h1 {
+  color: var(--accent);
+  font-size: 24px;
+}
+
+main #menu .controls span {
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main #menu .controls span:hover {
+  opacity: 0.75;
+}
+
+main #menu .buttons {
+  display: flex;
+  align-items: center;
+  padding: 0px 56px 0px;
+}
+
+main #menu .buttons #login-btn-mobile {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 10px 24px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  width: 50%;
+}
+
+main #menu .buttons #login-btn-mobile:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #menu .buttons #get-started-btn-mobile {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-left: 6.5px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+  width: 50%;
+}
+
+main #menu .buttons #get-started-btn-mobile:hover {
+  filter: brightness(1.1);
+}
+
+main nav {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+main nav h1 {
+  color: var(--accent);
+  font-size: 32px;
+}
+
+main nav #buttons {
+  display: flex;
+  align-items: center;
+}
+
+main nav #buttons span {
+  display: none;
+}
+
+main nav #buttons #login-btn-nav {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 10px 24px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main nav #buttons #login-btn-nav:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main nav #buttons #get-started-btn-nav {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-left: 6.5px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main nav #buttons #get-started-btn-nav:hover {
+  filter: brightness(1.1);
+}
+
+main .hero {
+  display: flex;
+  align-items: center;
+}
+
+main .hero .text {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main .hero .text h1 {
+  font-size: 64px;
+  margin: 0;
+  margin-left: 397px;
+}
+
+main .hero .text h1 span {
+  color: var(--accent);
+}
+
+main .hero .text p {
+  opacity: 50%;
+  margin: 0;
+  margin-left: 397px;
+  margin-bottom: 32px;
+}
+
+main .hero .text #buttons {
+  display: flex;
+  align-items: center;
+  margin-left: 397px;
+}
+
+main .hero .text #buttons #get-started-btn-hero {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main .hero .text #buttons #get-started-btn-hero:hover {
+  filter: brightness(1.1);
+}
+
+main .hero .text #buttons #view-publications-btn-hero {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 10px 24px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main .hero .text #buttons #view-publications-btn-hero:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main .hero .text #rating {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-left: 397px;
+  margin-top: 16px;
+  margin-bottom: 128px;
+}
+
+main .hero .text #rating span {
+  color: #ff9900;
+}
+
+main .hero .text #rating p {
+  margin: 0;
+  margin-left: 13px;
+  font-size: 14px;
+}
+
+main .hero .render {
+  width: 50%;
+  display: grid;
+  place-items: center;
+}
+
+main .hero .render img {
+  transform: scale(0.8);
+}
+
+main #newspapers {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background: #0e0818;
+  padding: 64px 0px 64px;
+  border-radius: 10px;
+}
+
+main #newspapers img {
+  height: 128px;
+  opacity: 50%;
+}
+
+main #feature-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 96px;
+  padding-bottom: 128px;
+}
+
+main #feature-section h2 {
+  font-size: 48px;
+  margin-bottom: 96px;
+}
+
+main #feature-section h2 span {
+  color: var(--accent);
+}
+
+main #feature-section #features {
+  display: flex;
+  flex-direction: column;
+}
+
+main #feature-section #features #row {
+  display: flex;
+  justify-content: space-between;
+}
+
+main #feature-section #features #row #feature {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  opacity: 0.94;
+  background: rgba(140, 82, 255, 0.03);
+  height: 320px;
+  width: 320px;
+  margin: 6.5px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+main #feature-section #features #row #feature img {
+  height: 144px;
+  width: 144px;
+  display: block;
+  margin: auto;
+  object-fit: contain;
+}
+
+main #feature-section #features #row #feature p {
+  font-weight: 800;
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 8px;
+  margin-left: 23px;
+}
+
+main #feature-section #features #row #feature span {
+  opacity: 50%;
+  font-size: 14px;
+  margin: 0;
+  margin-left: 23px;
+  margin-bottom: 23px;
+  margin-right: 23px;
+}
+
+main #list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 64px;
+  padding-bottom: 128px;
+}
+
+main #list h2 {
+  font-size: 48px;
+  margin-bottom: 48px;
+}
+
+main #list h2 span {
+  color: var(--accent);
+}
+
+main #list button {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  margin-bottom: 128px;
+  transition: 0.5s ease;
+}
+
+main #list button:hover {
+  filter: brightness(1.1);
+}
+
+main #list #feature-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main #list #feature-list #feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 250%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 8px 0px 8px;
+}
+
+main #list #feature-list #feature span {
+  color: var(--accent);
+}
+
+main footer {
+  background: black;
+  display: flex;
+  align-items: center;
+  padding: 48px 0px 48px;
+  border-radius: 10px;
+  justify-content: space-evenly;
+}
+
+main footer h1 {
+  color: var(--accent);
+}
+
+main footer ul {
+  display: flex;
+  align-items: center;
+}
+
+main footer ul a {
+  text-decoration: none;
+  color: white;
+  opacity: 50%;
+  margin: 0px 16px 0px;
+  transition: 0.5s ease;
+}
+
+main footer ul a:hover {
+  opacity: 75%;
+}
+
+main footer ul button {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-left: 12px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main footer ul button:hover {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 400px) {
+  main nav {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    justify-content: space-between;
+  }
+
+  main nav h1 {
+    margin-left: 48px;
+    font-size: 24px;
+  }
+
+  main nav #buttons span {
+    display: flex;
+    margin-right: 48px;
+    cursor: pointer;
+    transition: 0.5s ease;
+  }
+
+  main nav #buttons span:hover {
+    opacity: 0.75;
+  }
+
+  main nav #buttons #get-started-btn-nav {
+    display: none;
+  }
+
+  main nav #buttons #login-btn-nav {
+    display: none;
+  }
+
+  main .hero {
+    flex-direction: column;
+  }
+
+  main .hero .text {
+    width: 100%;
+  }
+
+  main .hero .text h1 {
+    margin: 0;
+    font-size: 35px;
+    margin-left: 48px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+
+  main .hero .text p {
+    margin: 0;
+    font-size: 14px;
+    margin-left: 48px;
+    margin-right: 16px;
+    margin-bottom: 24px;
+  }
+
+  main .hero .text #buttons {
+    margin: 0;
+    margin-left: 48px;
+    margin-bottom: 16px;
+  }
+
+  main .hero .text #rating {
+    margin: 0;
+    margin-left: 48px;
+  }
+
+  main .hero .render {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 750px;
+  }
+
+  main .hero .render img {
+    transform: scale(0.667);
+  }
+
+  main #newspapers {
+    border-radius: 10px;
+  }
+
+  main #newspapers img {
+    height: 48px;
+    margin: 0;
+  }
+
+  main #feature-section {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  main #feature-section #features #row {
+    flex-direction: column;
+  }
+
+  main #feature-section h2 {
+    font-size: 26px;
+    margin-bottom: 48px;
+  }
+
+  main #list {
+    padding-top: 12px;
+    padding-bottom: 64px;
+  }
+
+  main #list h2 {
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  main #list button {
+    margin-bottom: 32px;
+  }
+
+  main #list #feature-list #feature {
+    width: 80%;
+  }
+
+  main #list #feature-list #feature p {
+    font-size: 16px;
+  }
+
+  main #list #feature-list #feature span {
+    margin-left: 24px;
+  }
+
+  main footer {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  main footer ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  main footer ul a,
+  button {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 767px) {
+  main .hero {
+    height: 592px;
+    padding-bottom: 64px;
+  }
+
+  main .hero .text h1 {
+    font-size: 32px;
+    margin-left: 64px;
+  }
+
+  main .hero .text p {
+    font-size: 16px;
+    margin-left: 64px;
+  }
+
+  main .hero .text #buttons {
+    margin: 0;
+    margin-left: 64px;
+    margin-bottom: 16px;
+    flex-direction: column;
+  }
+
+  main .hero .text #buttons #get-started-btn-hero {
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  main .hero .text #buttons #view-publications-btn-hero {
+    font-size: 12px;
+    width: 100%;
+  }
+
+  main .hero .text #rating {
+    margin: 0;
+    margin-left: 64px;
+  }
+
+  main .hero .render {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  main .hero .render img {
+    transform: scale(0.4);
+  }
+
+  main #newspapers {
+    border-radius: 10px;
+  }
+
+  main #newspapers img {
+    height: 64px;
+    margin: 0;
+  }
+
+  main #feature-section {
+    padding-top: 32px;
+    padding-bottom: 64px;
+  }
+
+  main #feature-section h2 {
+    font-size: 32px;
+    margin-top: 32px;
+    margin-bottom: 64px;
+    text-align: center;
+  }
+
+  main #feature-section #features #row {
+    flex-direction: column;
+  }
+
+  main #list {
+    padding-top: 0px;
+    padding-bottom: 64px;
+  }
+
+  main #list h2 {
+    font-size: 32px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  main #list button {
+    margin-bottom: 72px;
+  }
+
+  main #list #feature-list #feature {
+    width: 120%;
+  }
+
+  main footer {
+    border-radius: 10px;
+  }
+
+  main footer ul {
+    flex-direction: column;
+  }
+
+  main footer ul a {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  main footer ul button {
+    margin-top: 12px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  main .hero {
+    height: 592px;
+    padding-bottom: 64px;
+  }
+
+  main .hero .text h1 {
+    font-size: 32px;
+    margin-left: 96px;
+  }
+
+  main .hero .text p {
+    font-size: 16px;
+    margin-left: 96px;
+  }
+
+  main .hero .text #buttons {
+    margin: 0;
+    margin-left: 96px;
+    margin-bottom: 16px;
+  }
+
+  main .hero .text #buttons #get-started-btn-hero {
+    font-size: 12px;
+  }
+
+  main .hero .text #buttons #view-publications-btn-hero {
+    font-size: 12px;
+  }
+
+  main .hero .text #rating {
+    margin: 0;
+    margin-left: 96px;
+  }
+
+  main .hero .render {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  main .hero .render img {
+    transform: scale(0.5);
+  }
+
+  main #newspapers {
+    border-radius: 10px;
+  }
+
+  main #newspapers img {
+    height: 72px;
+    margin: 0;
+  }
+
+  main #feature-section {
+    padding-top: 32px;
+    padding-bottom: 64px;
+  }
+
+  main #feature-section h2 {
+    font-size: 32px;
+    margin-top: 32px;
+    margin-bottom: 64px;
+    text-align: center;
+  }
+
+  /* main #feature-section #features #row {
+    flex-direction: column;
+  } */
+
+  main #feature-section #features #row #feature {
+    height: 224px;
+    width: 224px;
+  }
+
+  main #feature-section #features #row #feature img {
+    height: 72px;
+    width: 72px;
+  }
+  main #feature-section #features #row #feature p {
+    font-size: 16px;
+  }
+
+  main #feature-section #features #row #feature span {
+    font-size: 12px;
+  }
+
+  main #list {
+    padding-top: 0px;
+    padding-bottom: 64px;
+  }
+
+  main #list h2 {
+    font-size: 32px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  main #list button {
+    margin-bottom: 72px;
+  }
+
+  main #list #feature-list #feature {
+    width: 175%;
+  }
+
+  main footer {
+    border-radius: 10px;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1400px) {
+  main .hero {
+    height: 592px;
+    padding-bottom: 64px;
+  }
+
+  main .hero .text h1 {
+    font-size: 48px;
+    margin-left: 192px;
+    margin-bottom: 8px;
+  }
+
+  main .hero .text p {
+    font-size: 16px;
+    margin-left: 192px;
+  }
+
+  main .hero .text #buttons {
+    margin: 0;
+    margin-left: 192px;
+    margin-bottom: 16px;
+  }
+
+  main .hero .text #buttons #get-started-btn-hero {
+    font-size: 14px;
+  }
+
+  main .hero .text #buttons #view-publications-btn-hero {
+    font-size: 14px;
+  }
+
+  main .hero .text #rating {
+    margin: 0;
+    margin-left: 192px;
+  }
+
+  main .hero .render {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  main .hero .render img {
+    transform: scale(0.5);
+  }
+
+  main #newspapers {
+    border-radius: 10px;
+  }
+
+  main #newspapers img {
+    height: 112px;
+  }
+}

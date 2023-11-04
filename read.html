@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <link rel="stylesheet" href="read.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link href="https://unpkg.com/movement.css/movement.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blink</title>
+</head>
+<body>
+
+    <main>
+        <aside>
+            <ul>
+                <div id="searchbar">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="search" placeholder="Search for topics, locations & sources">
+                    <span class="material-symbols-outlined">arrow_drop_down</span>
+                </div>
+                <button id="switch-to-latest-btn">Latest Stories</button>
+                <button id="personal-host-btn">Personal Host</button>
+                <button id="settings-btn">My Settings</button>
+                <button id="sign-out-btn">Sign Out</button>
+            </ul>
+            <span id="close-menu" class="material-symbols-outlined">close</span>
+        </aside>
+        <nav>
+            <h1>blink.</h1>
+            <div id="searchbar">
+                <span class="material-symbols-outlined">search</span>
+                <input type="search" placeholder="Search for topics, locations & sources">
+                <span class="material-symbols-outlined">arrow_drop_down</span>
+            </div>
+            <span id="menu-btn" class="material-symbols-outlined">menu</span>
+        </nav>
+        <section id="onboarding">
+            <div class="tab" id="interests" data-m="bounce-up">
+                <h1>What are you <br>interested in?</h1>
+                <form id="interests-form-onboarding">
+                    <div class="interest" id="business">
+                        <span class="material-symbols-outlined">done</span>
+                        <p>Business</p>
+                    </div>
+                    <div class="interest" id="entertainment">
+                        <span class="material-symbols-outlined">done</span>
+                        <p>Entertainment</p>
+                    </div>
+                    <div class="interest" id="technology">
+                        <span class="material-symbols-outlined">done</span>
+                        <p>Technology</p>
+                    </div>
+                    <div class="interest" id="sports">
+                        <span class="material-symbols-outlined">done</span>
+                        <p>Sports</p>
+                    </div>
+                    <div class="interest" id="politics">
+                        <span class="material-symbols-outlined">done</span>
+                        <p>Politics</p>
+                    </div>
+                    <div class="interest" id="science">
+                        <span class="material-symbols-outlined">done</span>
+                        <p>Science</p>
+                    </div>
+                    <div class="interest" id="food">
+                        <span class="material-symbols-outlined">done</span>
+                        <p>Food</p>
+                    </div>
+                    <div class="interest" id="health">
+                        <span class="material-symbols-outlined">done</span>
+                        <p>Health</p>
+                    </div>
+                    <button type="submit">Go</button>
+                </form>
+            </div>
+            <div class="tab" id="openai" data-m="bounce-up">
+                <h1>Integrate OpenAI</h1>
+                <form id="openai-form-onboarding">
+                    <div class="card">
+                        <img src="assets/logos/openai.png">
+                        <p>We use OpenAI to provide many features<br> including summarization to you. Without <br>adding a valid API key, you won’t be able<br> to use all the capabilities of Blink.</p>
+                        <div class="input">
+                            <span class="material-symbols-outlined">vpn_key</span>
+                            <input type="text" name="openai_api_key" placeholder="OpenAI API Key">
+                        </div>
+                        <div class="container">
+                            <span id="help-btn" class="material-symbols-outlined">question_mark</span>
+                        </div>
+                    </div>
+                    <button id="submit-btn" type="submit">Continue</button>
+                </form>
+                <button id="skip-btn">Skip For Now</button>
+            </div>
+        </section>
+        <section id="app">
+            <header>
+                <h1>Picks For You</h1>
+                <p id="date">Saturday, October 28th</p>
+            </header>
+        </section>
+    </main>
+
+
+    <script type="module" src="read.js"></script>
+    
+</body>
+</html>

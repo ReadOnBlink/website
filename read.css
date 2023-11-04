@@ -1,0 +1,511 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;700&family=Nunito:wght@500;800&display=swap");
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: var(--bg);
+  color: white;
+  font-family: "Nunito", sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #120e1b;
+  --accent: #8c52ff;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
+
+main aside {
+  position: absolute;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--accent);
+  height: 100%;
+  width: fit-content;
+  padding: 32px;
+  right: -30%;
+  transition: 0.5s ease;
+}
+
+main aside ul {
+  display: flex;
+  flex-direction: column;
+}
+
+main aside ul #searchbar {
+  display: none;
+}
+
+main aside ul button {
+  background: #a97dff;
+  color: white;
+  border: none;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 16px;
+  margin-top: 6.5px;
+  margin-bottom: 6.5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main aside button:hover {
+  opacity: 75%;
+}
+
+main aside span {
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main aside span:hover {
+  opacity: 75%;
+}
+
+main nav {
+  display: none;
+  align-items: center;
+  justify-content: space-evenly;
+  height: fit-content;
+  width: 100%;
+  padding: 32px 0px 32px;
+  background: var(--bg);
+}
+
+main nav h1 {
+  color: var(--accent);
+  font-size: 32px;
+}
+
+main nav #searchbar {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 10px 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  /* width: 50%; */
+}
+
+main nav #searchbar span {
+  opacity: 50%;
+  margin: 0;
+  padding: 0;
+  transition: 0.5s ease;
+}
+
+main nav #searchbar span:hover {
+  opacity: 100%;
+}
+
+main nav #searchbar input {
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  opacity: 75%;
+  border: none;
+  outline: none;
+  color: white;
+  width: 75%;
+  transition: 0.5s ease;
+}
+
+main nav #searchbar input:hover {
+  opacity: 100%;
+}
+
+main nav #searchbar input:focus {
+  opacity: 100%;
+}
+
+main nav #menu-btn {
+  opacity: 50%;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main nav #menu-btn:hover {
+  opacity: 100%;
+}
+
+main #onboarding {
+  display: none;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+main #onboarding #interests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+}
+
+main #onboarding #interests h1 {
+  color: var(--accent);
+  font-size: 36px;
+  margin-bottom: 36px;
+}
+
+main #onboarding #interests form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+main #onboarding #interests form .interest {
+  display: flex;
+  align-items: center;
+  /* width: 20%; */
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 12px 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+main #onboarding #interests form .interest:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #onboarding #interests form .interest span {
+  color: var(--accent);
+  padding: 6px;
+  border-radius: 50%;
+  background: rgba(140, 82, 255, 0.25);
+  font-size: 18px;
+  margin-right: 14px;
+}
+
+main #onboarding #interests form .interest p {
+  font-weight: 500;
+  opacity: 50%;
+  transition: 0.5s ease;
+}
+
+main #onboarding #interests form button {
+  border-radius: 5px;
+  color: white;
+  padding: 16px 16px;
+  width: 100%;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 6px;
+}
+
+main #onboarding #interests form button:hover {
+  filter: brightness(1.1);
+}
+
+main #onboarding #openai {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+main #onboarding #openai h1 {
+  color: var(--accent);
+  font-size: 36px;
+  margin-bottom: 64px;
+}
+
+main #onboarding #openai #openai-form-onboarding {
+  display: flex;
+  flex-direction: column;
+}
+
+main #onboarding #openai #openai-form-onboarding .card {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  opacity: 0.94;
+  background: rgba(140, 82, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 48px;
+}
+
+main #onboarding #openai #openai-form-onboarding .card img {
+  height: 42px;
+  width: 42px;
+  margin-bottom: 24px;
+}
+
+main #onboarding #openai #openai-form-onboarding .card p {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+main #onboarding #openai #openai-form-onboarding .card .input {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.25);
+  padding: 16px;
+  width: 100%;
+}
+
+main #onboarding #openai #openai-form-onboarding .card .input span {
+  color: var(--accent);
+  margin-right: 5%;
+}
+
+main #onboarding #openai #openai-form-onboarding .card .input input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  opacity: 50%;
+  font-family: "Nunito", sans-serif;
+  margin-left: 2.5%;
+  transition: 0.5s ease;
+}
+
+main #onboarding #openai #openai-form-onboarding .card .input input:focus {
+  opacity: 100%;
+}
+
+main #onboarding #openai #openai-form-onboarding .card .input input:hover {
+  opacity: 100%;
+}
+
+main #onboarding #openai #openai-form-onboarding .card .container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+main #onboarding #openai #openai-form-onboarding .card .container #help-btn {
+  color: var(--accent);
+  padding: 6px;
+  border-radius: 50%;
+  background: rgba(140, 82, 255, 0.25);
+  font-size: 16px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+main
+  #onboarding
+  #openai
+  #openai-form-onboarding
+  .card
+  .container
+  #help-btn:hover {
+  filter: brightness(1.5);
+}
+
+main #onboarding #openai #openai-form-onboarding #submit-btn {
+  border-radius: 5px;
+  color: white;
+  padding: 16px 16px;
+  width: 100%;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 16px;
+}
+
+main #onboarding #openai #openai-form-onboarding #submit-btn:hover {
+  filter: brightness(1.1);
+}
+
+main #onboarding #openai #skip-btn {
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 16px 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 16px;
+  opacity: 50%;
+}
+
+main #onboarding #openai #skip-btn:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #app {
+  display: none;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+main #app header {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+main #app header h1 {
+  color: var(--accent);
+  font-size: 48px;
+}
+
+main #app header p {
+  color: white;
+  opacity: 50%;
+}
+
+@media (max-width: 400px) {
+  main aside {
+    right: -100%;
+    width: 100%;
+  }
+
+  main aside ul {
+    width: 100%;
+  }
+
+  main aside ul #searchbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    border: 1px solid #a97dff;
+    color: white;
+    opacity: 0.94;
+    padding: 12px;
+    background: #a97dff;
+    font-family: "Nunito", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    margin-right: 6.5px;
+    margin-top: 6.5px;
+    margin-bottom: 6.5px;
+    cursor: pointer;
+    transition: 0.5s ease;
+  }
+
+  main aside ul #searchbar span {
+    margin: 0;
+    padding: 0;
+    transition: 0.5s ease;
+  }
+
+  main aside ul #searchbar input {
+    font-family: "Nunito", sans-serif;
+    font-weight: 500;
+    background: transparent;
+    opacity: 75%;
+    border: none;
+    outline: none;
+    color: white;
+    width: 60%;
+    transition: 0.5s ease;
+  }
+
+  main #onboarding #interests {
+    width: 75%;
+  }
+
+  main #onboarding #interests h1 {
+    font-size: 32px;
+  }
+
+  main #onboarding #openai #openai-form-onboarding .card {
+    padding: 16px 24px;
+  }
+
+  main #onboarding #openai #openai-form-onboarding .card img {
+    width: 38px;
+    height: 38px;
+    margin-top: 8px;
+  }
+  main #onboarding #openai #openai-form-onboarding .card p {
+    font-size: 14px;
+  }
+
+  main nav {
+    justify-content: space-between;
+  }
+
+  main nav h1 {
+    margin-left: 48px;
+  }
+
+  main nav #searchbar {
+    display: none;
+  }
+
+  main nav #menu-btn {
+    margin-right: 48px;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 767px) {
+  main aside {
+    right: -50%;
+  }
+
+  main #onboarding #interests {
+    width: 75%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  main #onboarding #interests {
+    width: 40%;
+  }
+}

@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;700&family=Nunito:wght@500;800&display=swap");
+
+html,
+body {
+  background: var(--bg);
+  color: white;
+  font-family: "Nunito", sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #120e1b;
+  --accent: #8c52ff;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+main h1 {
+  color: var(--accent);
+  font-size: 56px;
+  margin-bottom: 32px;
+}
+
+main form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main form div {
+  border-radius: 5px;
+  background: rgba(140, 82, 255, 0.1);
+  border: none;
+  padding: 20px 20px;
+  width: 125%;
+  margin-top: 6.5px;
+  margin-bottom: 6.5px;
+  display: flex;
+  align-items: center;
+}
+
+main form div span {
+  color: var(--accent);
+  margin-right: 14px;
+}
+
+main form div input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  width: 90%;
+  opacity: 50%;
+  font-weight: 500;
+  color: white;
+  transition: 0.5s ease;
+}
+
+main form div input:focus {
+  opacity: 100%;
+}
+
+main form #submit {
+  margin-top: 13px;
+  color: white;
+  background: var(--accent);
+  width: 125%;
+  padding: 20px 20px;
+  font-family: "Nunito", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+main form #submit:hover {
+  filter: brightness(1.1);
+}
+
+main form a {
+  text-decoration: none;
+  color: white;
+  opacity: 50%;
+  font-size: 12px;
+  width: 125%;
+  margin-bottom: 32px;
+  transition: 0.5s ease;
+}
+
+main form a:hover {
+  opacity: 100%;
+}
+
+main form #or {
+  opacity: 50%;
+  margin-bottom: 32px;
+}
+
+main form #google {
+  display: flex;
+  align-items: center;
+  width: 125%;
+  color: white;
+  padding: 20px 20px;
+  font-family: "Nunito", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  background: rgba(140, 82, 255, 0.1);
+  font-size: 14px;
+}
+
+main form #google-btn {
+  display: flex;
+  align-items: center;
+  width: 125%;
+  color: white;
+  padding: 20px 20px;
+  font-family: "Nunito", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  background: rgba(140, 82, 255, 0.1);
+  font-size: 14px;
+}
+
+main form #google:hover {
+  outline: 1px solid var(--accent);
+}
+
+main form #google img {
+  height: 16px;
+  width: 16px;
+  margin-right: 15%;
+}
+
+main form #google p {
+  opacity: 50%;
+}
+
+main form #google-btn img {
+  height: 16px;
+  width: 16px;
+  margin-right: 25%;
+}
+
+@media (max-width: 400px) {
+  main form div {
+    padding: 16px 16px;
+    width: 115%;
+  }
+
+  main form #submit {
+    padding: 16px 16px;
+    font-size: 14px;
+    width: 115%;
+  }
+
+  main form a {
+    width: 115%;
+  }
+
+  main form #google {
+    width: 115%;
+  }
+
+  main form #google-btn {
+    width: 115%;
+  }
+
+  main form #google-btn img {
+    margin-right: 20%;
+  }
+
+  /* main form div span {
+    font-size: 14px;
+  } */
+}

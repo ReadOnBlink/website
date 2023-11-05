@@ -53,7 +53,7 @@ onAuthStateChanged(auth, async user => {
 
         console.log(month);
         console.log(day);
-        let ext = () => { if(currDate % 10 > 4) return "th"; else if(currDate % 10 == 1) return "st"; else if(currDate % 10 == 2) return "nd"; else if(currDate % 10 == 3) return "rd"; }
+        let ext = () => { if(currDate % 10 >= 3) return "th"; else if(currDate % 10 == 1) return "st"; else if(currDate % 10 == 2) return "nd"; else if(currDate % 10 == 3) return "rd"; }
 
         dateText.innerText = `${day}, ${month} ${currDate}${ext(currDate)}`;
 
@@ -72,12 +72,11 @@ const businessBtn = document.getElementById('business');
 const entertainmentBtn = document.getElementById('entertainment');
 const technologyBtn = document.getElementById('technology');
 const sportsBtn = document.getElementById('sports');
-const politicsBtn = document.getElementById('politics');
+const politicsBtn = document.getElementById('nation');
 const scienceBtn = document.getElementById('science');
-const foodBtn = document.getElementById('food');
 const healthBtn = document.getElementById('health');
 
-const buttons = [businessBtn, entertainmentBtn, technologyBtn, sportsBtn, politicsBtn, scienceBtn, foodBtn, healthBtn];
+const buttons = [businessBtn, entertainmentBtn, technologyBtn, sportsBtn, politicsBtn, scienceBtn, healthBtn];
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
         const text = btn.querySelector('p');
@@ -180,48 +179,61 @@ const docRef = doc(db, 'tooling', 'kR19VTNHvTxVw9FgxZYB');
 const docSnap = await getDoc(docRef);
 if (docSnap.exists()) {
     var datakey = docSnap.data().key;
-    console.log('newsdatakey:', datakey);
-    // await getNews(datakey);
+    await getNews(datakey, await getPreferences(auth.currentUser.uid));
 } else {
     console.log('document does not exist!')
 }
-/* 
-async function getNews(key) {
-    const response = await fetch(`https://newsdata.io/api/1/news?apikey=${key}&q=pizza`);
-    const pizza = await response.json();
-    console.log(pizza)
+
+async function getPreferences(user) {
+    const userDocRef = doc(db, 'users', user);
+    const userDocSnap = await getDoc(userDocRef);
+    let userPreferences = userDocSnap.data().preferences;
+    return userPreferences
 }
- */
 
-async function getNews(key) {
-	const apiKey = key; // Replace with your Bearer token
-    const query = "pizza";
+async function getNews(key, preferences) {
+    for (let x = 0; x < preferences.length; x++) {
+        let url = 'https://gnews.io/api/v4/top-headlines?category=' + preferences[x] + '&lang=en&country=us&max=10&apikey=' + key;
+        await fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log('artiawdi', data.articles);
+                console.log(data.articles.length);
 
-    const apiUrl = `https://newsdata.io/api/1/news?q=${query}`;
+                for (let i = 0; i < data.articles.length; i++) {
+                    const container = document.getElementById('news-container');
+                    const article = document.createElement('article');
+                    article.id = data.articles[i]['url'];
+                    const img = document.createElement('img');
+                    img.src = data.articles[i]['image'];
+                    img.setAttribute('class', 'article-img');
+                    const contentContainer = document.createElement('div');
+                    contentContainer.setAttribute('class', 'content-container');
+                    const title = document.createElement('h2');
+                    title.setAttribute('class', 'article-title');
+                    title.innerText  = data.articles[i]['title']
+                    const description = document.createElement('p');
+                    description.setAttribute('class', 'article-description');
+                    description.innerText = data.articles[i]['description'];
+                    contentContainer.appendChild(title);
+                    contentContainer.appendChild(description);
+                    article.appendChild(img);
+                    article.appendChild(contentContainer)
+                    container.appendChild(article);
+                    // articles[i].title
+                    console.log("Title: " + data.articles[i]['title']);
+                    // articles[i].description
+                    console.log("Description: " + data.articles[i]['description']);
+                    // You can replace {property} below with any of the article properties returned by the API.
+                    // articles[i].{property}
+                    // console.log(articles[i]['{property}']);
 
-    const requestOptions = {
-    method: "GET",
-    headers: {
-        "X-ACCESS-KEY": `Bearer ${apiKey}`,
+                    // Delete this line to display all the articles returned by the request. Currently only the first article is displayed.
+
+                }
+            });
     }
-    };
-
-    fetch(apiUrl, requestOptions)
-    .then((response) => {
-        if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then((data) => {
-        // Process the JSON data returned by the API
-        console.log(data);
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-    });
+    
 }
-
-
-
-

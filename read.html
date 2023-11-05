@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link href="https://unpkg.com/movement.css/movement.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blink</title>
+    <title>Blink - For You</title>
 </head>
 <body>
 
@@ -91,10 +91,20 @@
         </section>
         <section id="app">
             <header data-m="bounce-up">
-                <h1>Picks For You</h1>
+                <h1 id="label">Picks For You</h1>
                 <p id="date">Saturday, October 28th</p>
             </header>
             <div id="news-container" data-m="bounce-up"></div>
+            <div id="article-container" data-m="bounce-up">
+                <img id="article-head-image" src="/">
+                <h1 id="article-title"></h1>
+                <div class="info">
+                    <p id="publishDate"></p>
+                    <a id="sourceText" class="material-symbols-outlined" href="/" target="_blank">share_windows</a>
+                </div>
+                <p id="article-description"></p>
+                <button id="back-to-news-btn">Back</button>
+            </div>
         </section>
     </main>
 

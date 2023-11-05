@@ -181,7 +181,7 @@ if (docSnap.exists()) {
     var datakey = docSnap.data().key;
     await getNews(datakey, await getPreferences(auth.currentUser.uid));
 } else {
-    console.log('document does not exist!')
+    console.log('document does not exist!');
 }
 
 async function getPreferences(user) {
@@ -222,6 +222,24 @@ async function getNews(key, preferences) {
                     article.appendChild(img);
                     article.appendChild(contentContainer)
                     container.appendChild(article);
+                    article.addEventListener('click', () => {
+                        const UIHeader = document.querySelector('header');
+                        UIHeader.style.display = 'none';
+                        const articleHeadImg = document.getElementById('article-head-image');
+                        articleHeadImg.src = data.articles[i]['image'];
+                        const articleTitle = document.getElementById('article-title');
+                        articleTitle.innerText = data.articles[i]['title'];
+                        const publishDate = document.getElementById('publishDate');
+                        publishDate.innerText = data.articles[i]['publishedAt'];
+                        const sourceText = document.getElementById('sourceText');
+                        sourceText.href = data.articles[i]['url'];
+                        const articleDescription = document.getElementById('article-description');
+                        articleDescription.innerHTML = `${data.articles[i]['description']}<br>${data.articles[i]['content']}`;
+                        const articleContainer = document.getElementById('article-container');
+                        container.style.display = 'none';
+                        articleContainer.style.display = 'flex';
+                        document.title = data.articles[i]['title']
+                    })
                     // articles[i].title
                     console.log("Title: " + data.articles[i]['title']);
                     // articles[i].description
@@ -232,8 +250,24 @@ async function getNews(key, preferences) {
 
                     // Delete this line to display all the articles returned by the request. Currently only the first article is displayed.
 
-                }
+                };
             });
     }
     
 }
+
+const backToNewsBtn = document.getElementById('back-to-news-btn');
+backToNewsBtn.addEventListener('click', () => {
+
+    const newsfeed = document.getElementById('news-container');
+    const articleWindow = document.getElementById('article-container');
+
+    newsfeed.style.display = 'flex';
+    articleWindow.style.display = 'none';
+
+    const UIHeader = document.querySelector('header');
+    UIHeader.style.display = 'flex';
+
+    document.title = 'Blink - For You';
+
+})

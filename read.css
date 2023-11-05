@@ -415,6 +415,7 @@ main #app #news-container {
   flex-direction: column;
   margin-left: 18.5%;
   margin-right: 18.5%;
+  padding-bottom: 64px;
 }
 
 main #app #news-container article {
@@ -450,6 +451,77 @@ main #app #news-container article h2 {
 main #app #news-container article p {
   color: white;
   opacity: 50%;
+}
+
+main #app #article-container {
+  display: none;
+  flex-direction: column;
+  margin-left: 18.5%;
+  margin-right: 18.5%;
+  padding-bottom: 64px;
+}
+
+main #app #article-container img {
+  border-radius: 25px;
+  margin-bottom: 32px;
+}
+
+main #app #article-container h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+main #app #article-container .info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+main #app #article-container .info p {
+  color: white;
+  opacity: 50%;
+}
+
+main #app #article-container .info a {
+  text-decoration: none;
+  color: var(--accent);
+  padding: 8px;
+  border-radius: 50%;
+  background: rgba(140, 82, 255, 0.25);
+  font-size: 18px;
+  transition: 0.5s ease;
+}
+
+main #app #article-container .info a:hover {
+  cursor: pointer;
+  filter: brightness(1.25);
+}
+
+main #app #article-container #article-description {
+  color: white;
+  opacity: 50%;
+  margin-bottom: 48px;
+}
+
+main #app #article-container button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 16px;
+  margin-top: 6.5px;
+  margin-bottom: 6.5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main #app #article-container button:hover {
+  opacity: 75%;
 }
 
 @media (max-width: 400px) {

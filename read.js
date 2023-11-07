@@ -9,6 +9,8 @@ console.log(firebase);
 const auth = getAuth(firebase);
 const db = getFirestore(firebase);
 
+let latestNewsLoaded;
+
 // signout functionality
 const signOutBtn = document.querySelector('#sign-out-btn');
 signOutBtn.addEventListener('click', () => {
@@ -174,6 +176,84 @@ closeMenuBtn.addEventListener('click', () => {
     }
 });
 
+const latestNewsBtn = document.getElementById('switch-to-latest-btn');
+const latestNewsContainer = document.getElementById('latest-container');
+latestNewsBtn.addEventListener('click', async e => {
+
+    let datakey;
+
+    const docRef = doc(db, 'tooling', 'kR19VTNHvTxVw9FgxZYB');
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        datakey = docSnap.data().key;
+    } else {
+        console.log('document does not exist!');
+    }
+
+    const newsfeed = document.getElementById('news-container');
+    const articleWindow = document.getElementById('article-container');
+
+    if (latestNewsBtn.innerText === 'Latest Stories') {
+
+        if (latestNewsLoaded === true) {
+            console.log('latest news already loaded!');
+        } else {
+            await getLatestNews(datakey);
+        }
+
+        latestNewsContainer.style.display = 'flex';
+        newsfeed.style.display = 'none';
+        articleWindow.style.display = 'none';
+
+        latestNewsBtn.innerText = 'For You';
+        document.title = 'Blink - Latest News'
+
+        sessionStorage.setItem('backTo', 'latest');
+
+    } else {
+
+        latestNewsContainer.style.display = 'none';
+        newsfeed.style.display = 'flex';
+        articleWindow.style.display = 'none';
+
+        latestNewsBtn.innerText = 'Latest Stories';
+        document.title = 'Blink - For You';
+
+        sessionStorage.setItem('backTo', 'foryou');
+
+    }
+
+});
+
+const backToNewsBtn = document.getElementById('back-to-news-btn');
+backToNewsBtn.addEventListener('click', () => {
+
+    const newsfeed = document.getElementById('news-container');
+    const articleWindow = document.getElementById('article-container');
+
+    if (sessionStorage.getItem('backTo') === 'latest') {
+        latestNewsContainer.style.display = 'flex';
+        newsfeed.style.display = 'none';
+        articleWindow.style.display = 'none';
+    
+        const UIHeader = document.querySelector('header');
+        UIHeader.style.display = 'flex';
+    
+        document.title = 'Blink - Latest News';
+    } else {
+        latestNewsContainer.style.display = 'none';
+        newsfeed.style.display = 'flex';
+        articleWindow.style.display = 'none';
+    
+        const UIHeader = document.querySelector('header');
+        UIHeader.style.display = 'flex';
+    
+        document.title = 'Blink - For You';
+    }
+
+});
+
+
 // App functionality
 const docRef = doc(db, 'tooling', 'kR19VTNHvTxVw9FgxZYB');
 const docSnap = await getDoc(docRef);
@@ -191,6 +271,67 @@ async function getPreferences(user) {
     return userPreferences
 }
 
+async function getLatestNews(key) {
+    let url = 'https://gnews.io/api/v4/top-headlines?catergory=' + 'general' + '&lang=en&country=us&max=10&apikey=' + key;
+    await fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log('latest news', data.articles);
+            for (let i = 0; i < data.articles.length; i++) {
+                const container = document.getElementById('latest-container');
+                const article = document.createElement('article');
+                article.id = data.articles[i]['url'];
+                const img = document.createElement('img');
+                img.src = data.articles[i]['image'];
+                img.setAttribute('class', 'article-img');
+                const contentContainer = document.createElement('div');
+                contentContainer.setAttribute('class', 'content-container');
+                const title = document.createElement('h2');
+                title.setAttribute('class', 'article-title');
+                title.innerText  = data.articles[i]['title']
+                const description = document.createElement('p');
+                description.setAttribute('class', 'article-description');
+                description.innerText = data.articles[i]['description'];
+                contentContainer.appendChild(title);
+                contentContainer.appendChild(description);
+                article.appendChild(img);
+                article.appendChild(contentContainer)
+                container.appendChild(article);
+                article.addEventListener('click', () => {
+                    const UIHeader = document.querySelector('header');
+                    UIHeader.style.display = 'none';
+                    const articleHeadImg = document.getElementById('article-head-image');
+                    articleHeadImg.src = data.articles[i]['image'];
+                    const articleTitle = document.getElementById('article-title');
+                    articleTitle.innerText = data.articles[i]['title'];
+                    const publishDate = document.getElementById('publishDate');
+                    publishDate.innerText = data.articles[i]['publishedAt'];
+                    const sourceText = document.getElementById('sourceText');
+                    sourceText.href = data.articles[i]['url'];
+                    const articleDescription = document.getElementById('article-description');
+                    articleDescription.innerHTML = `${data.articles[i]['description']}<br>${data.articles[i]['content']}`;
+                    const articleContainer = document.getElementById('article-container');
+                    container.style.display = 'none';
+                    articleContainer.style.display = 'flex';
+                    document.title = data.articles[i]['title']
+                })
+                // articles[i].title
+                console.log("Title: " + data.articles[i]['title']);
+                // articles[i].description
+                console.log("Description: " + data.articles[i]['description']);
+                // You can replace {property} below with any of the article properties returned by the API.
+                // articles[i].{property}
+                // console.log(articles[i]['{property}']);
+
+                // Delete this line to display all the articles returned by the request. Currently only the first article is displayed.
+
+            };
+            latestNewsLoaded = true;
+        })
+};
+
 async function getNews(key, preferences) {
     for (let x = 0; x < preferences.length; x++) {
         let url = 'https://gnews.io/api/v4/top-headlines?category=' + preferences[x] + '&lang=en&country=us&max=10&apikey=' + key;
@@ -199,7 +340,7 @@ async function getNews(key, preferences) {
                 return response.json();
             })
             .then(function (data) {
-                console.log('artiawdi', data.articles);
+                console.log('for you news', data.articles);
                 console.log(data.articles.length);
 
                 for (let i = 0; i < data.articles.length; i++) {
@@ -255,19 +396,3 @@ async function getNews(key, preferences) {
     }
     
 }
-
-const backToNewsBtn = document.getElementById('back-to-news-btn');
-backToNewsBtn.addEventListener('click', () => {
-
-    const newsfeed = document.getElementById('news-container');
-    const articleWindow = document.getElementById('article-container');
-
-    newsfeed.style.display = 'flex';
-    articleWindow.style.display = 'none';
-
-    const UIHeader = document.querySelector('header');
-    UIHeader.style.display = 'flex';
-
-    document.title = 'Blink - For You';
-
-})

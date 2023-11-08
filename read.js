@@ -10,6 +10,7 @@ const auth = getAuth(firebase);
 const db = getFirestore(firebase);
 
 let latestNewsLoaded;
+let hasOpenAI;
 
 // signout functionality
 const signOutBtn = document.querySelector('#sign-out-btn');
@@ -42,6 +43,13 @@ onAuthStateChanged(auth, async user => {
             appView.style.display = 'flex';
             onboardingView.style.display = 'none';
             navbar.style.display = 'flex';
+            if (!docSnap.data().openai || docSnap.data().openai === '') {
+                hasOpenAI = false;
+                console.log('openai status:', hasOpenAI)
+            } else {
+                hasOpenAI = true;
+                console.log('openai status:', hasOpenAI)
+            }
         } else {
             console.log('user needs to onboard still!')
             onboardingView.style.display = 'flex';

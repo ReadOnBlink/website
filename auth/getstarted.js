@@ -6,6 +6,8 @@ console.log(firebase);
 const auth = getAuth(firebase);
 const provider = new GoogleAuthProvider(auth);
 
+let alert = document.getElementById('alert');
+
 const form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
 
@@ -28,12 +30,30 @@ form.addEventListener('submit', (e) => {
                 location.href = '/read.html';
             }).catch((err) => {
                 console.log(err.message);
+                alert.innerText = err.message;
+                alert.style.display = 'flex';
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                    alert.innerText = '';
+                }, "7500")
             })
         }).catch((err) => {
             console.log(err.message)
+            alert.innerText = err.message;
+            alert.style.display = 'flex';
+            setTimeout(() => {
+                alert.style.display = 'none';
+                alert.innerText = '';
+            }, "7500")
         })
     }).catch((err) => {
         console.log(err.message)
+        alert.innerText = err.message;
+        alert.style.display = 'flex';
+        setTimeout(() => {
+            alert.style.display = 'none';
+            alert.innerText = '';
+        }, "7500")
     })
 
 })
@@ -52,9 +72,21 @@ googleBtn.addEventListener('click', (e) => {
             location.href = '/read.html'
         }).catch((err) => {
             console.log(err.message)
+            alert.innerText = err.message;
+            alert.style.display = 'flex';
+            setTimeout(() => {
+                alert.style.display = 'none';
+                alert.innerText = '';
+            }, "7500")
         })
     }).catch((err) => {
         console.log(err.message)
+        alert.innerText = err.message;
+        alert.style.display = 'flex';
+        setTimeout(() => {
+            alert.style.display = 'none';
+            alert.innerText = '';
+        }, "7500")
     })
 
 })

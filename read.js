@@ -11,6 +11,7 @@ const db = getFirestore(firebase);
 
 let latestNewsLoaded;
 let hasOpenAI;
+let openaiApiKey;
 
 // signout functionality
 const signOutBtn = document.querySelector('#sign-out-btn');
@@ -49,6 +50,7 @@ onAuthStateChanged(auth, async user => {
             } else {
                 hasOpenAI = true;
                 console.log('openai status:', hasOpenAI)
+                openaiApiKey = docSnap.data().openai;
             }
         } else {
             console.log('user needs to onboard still!')
@@ -323,7 +325,7 @@ async function getLatestNews(key) {
                     const articleContainer = document.getElementById('article-container');
                     container.style.display = 'none';
                     articleContainer.style.display = 'flex';
-                    document.title = data.articles[i]['title']
+                    document.title = data.articles[i]['title'];
                 })
                 // articles[i].title
                 console.log("Title: " + data.articles[i]['title']);
@@ -404,3 +406,57 @@ async function getNews(key, preferences) {
     }
     
 }
+
+const moreInfoBtn = document.getElementById('openai-info-btn');
+moreInfoBtn.addEventListener('click', () => {
+
+    if (hasOpenAI === true) {
+        console.log('calling GPT3!');
+        let contentToExplain = document.getElementById('article-title').innerText;
+        const endpoint = 'https://api.openai.com/v1/chat/completions';
+        const data = {
+            "model": "gpt-3.5-turbo",
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are a researcher and writer specializing in giving out context."
+              },
+              {
+                "role": "user",
+                "content": `Please give me extra context on this overall subject. It doesn't have to be current information: ${contentToExplain}`
+              },
+              {
+                "role": "assistant",
+                "content": "Don't say that you only have information up until 2022, just say the content"
+              },
+            ]
+          }
+          
+          // Set up the fetch request
+          fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${openaiApiKey}`,
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => {
+            //   if (!response.ok) {
+            //     throw new Error('Network response was not ok');
+            //   }
+              return response.json();
+            })
+            .then((data) => {
+              // Handle the response data here
+              console.log(data.choices[0].text); // This will contain the generated text
+            })
+            .catch((error) => {
+              // Handle any errors here
+              console.error('Error:', error);
+            });
+    } else {
+        console.log('user hasnt integrated openai!');
+    }
+
+})

@@ -567,6 +567,24 @@ main #app #article-container button:hover {
   opacity: 75%;
 }
 
+main #app #article-container #back-to-news-btn {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main #app #article-container #back-to-news-btn:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
 @media (max-width: 400px) {
   main aside {
     right: -100%;

@@ -281,6 +281,66 @@ async function getPreferences(user) {
     return userPreferences
 }
 
+async function searchNews(key, query) {
+    let url = 'https://gnews.io/api/v4/search?q=' + query + '&lang=en&country=us&max=10&apikey=' + key;
+    await fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log('latest news', data.articles);
+            for (let i = 0; i < data.articles.length; i++) {
+                const container = document.getElementById('search-container');
+                const article = document.createElement('article');
+                article.id = data.articles[i]['url'];
+                const img = document.createElement('img');
+                img.src = data.articles[i]['image'];
+                img.setAttribute('class', 'article-img');
+                const contentContainer = document.createElement('div');
+                contentContainer.setAttribute('class', 'content-container');
+                const title = document.createElement('h2');
+                title.setAttribute('class', 'article-title');
+                title.innerText  = data.articles[i]['title']
+                const description = document.createElement('p');
+                description.setAttribute('class', 'article-description');
+                description.innerText = data.articles[i]['description'];
+                contentContainer.appendChild(title);
+                contentContainer.appendChild(description);
+                article.appendChild(img);
+                article.appendChild(contentContainer)
+                container.appendChild(article);
+                article.addEventListener('click', () => {
+                    const UIHeader = document.querySelector('header');
+                    UIHeader.style.display = 'none';
+                    const articleHeadImg = document.getElementById('article-head-image');
+                    articleHeadImg.src = data.articles[i]['image'];
+                    const articleTitle = document.getElementById('article-title');
+                    articleTitle.innerText = data.articles[i]['title'];
+                    const publishDate = document.getElementById('publishDate');
+                    publishDate.innerText = data.articles[i]['publishedAt'];
+                    const sourceText = document.getElementById('sourceText');
+                    sourceText.href = data.articles[i]['url'];
+                    const articleDescription = document.getElementById('article-description');
+                    articleDescription.innerHTML = `${data.articles[i]['description']}<br>${data.articles[i]['content']}`;
+                    const articleContainer = document.getElementById('article-container');
+                    container.style.display = 'none';
+                    articleContainer.style.display = 'flex';
+                    document.title = data.articles[i]['title'];
+                })
+                // articles[i].title
+                console.log("Title: " + data.articles[i]['title']);
+                // articles[i].description
+                console.log("Description: " + data.articles[i]['description']);
+                // You can replace {property} below with any of the article properties returned by the API.
+                // articles[i].{property}
+                // console.log(articles[i]['{property}']);
+
+                // Delete this line to display all the articles returned by the request. Currently only the first article is displayed.
+
+            };
+        })
+}
+
 async function getLatestNews(key) {
     let url = 'https://gnews.io/api/v4/top-headlines?catergory=' + 'general' + '&lang=en&country=us&max=10&apikey=' + key;
     await fetch(url)
@@ -458,5 +518,42 @@ moreInfoBtn.addEventListener('click', () => {
     } else {
         console.log('user hasnt integrated openai!');
     }
+
+})
+
+// Search functions
+const searchbar = document.getElementById('search');
+const searchBtn = document.getElementById('search-btn');
+searchBtn.addEventListener('click', async e => {
+
+    console.log('Query: ', searchbar.value);
+
+    let newskey = docSnap.data().key;
+
+    await searchNews(newskey, searchbar.value);
+
+    const latestNewsView = document.getElementById('latest-container');
+    const forYouView = document.getElementById('news-container');
+    const searchView = document.getElementById('search-container');
+
+    searchView.style.display = 'flex';
+    latestNewsView.style.display = 'none';
+    forYouView.style.display = 'none';
+
+    const header = document.getElementById('label');
+    header.innerText = `Results For ${searchbar.value}`;
+
+});
+
+const blinkBtn = document.querySelector('.blink');
+blinkBtn.addEventListener('click', () => {
+
+    const latestNewsView = document.getElementById('latest-container');
+    const forYouView = document.getElementById('news-container');
+    const searchView = document.getElementById('search-container');
+
+    searchView.style.display = 'none';
+    latestNewsView.style.display = 'none';
+    forYouView.style.display = 'flex';
 
 })

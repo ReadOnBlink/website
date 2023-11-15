@@ -203,6 +203,8 @@ latestNewsBtn.addEventListener('click', async e => {
     const newsfeed = document.getElementById('news-container');
     const articleWindow = document.getElementById('article-container');
 
+    const headText = document.getElementById('label');
+
     if (latestNewsBtn.innerText === 'Latest Stories') {
 
         if (latestNewsLoaded === true) {
@@ -218,6 +220,8 @@ latestNewsBtn.addEventListener('click', async e => {
         latestNewsBtn.innerText = 'For You';
         document.title = 'Blink - Latest News'
 
+        headText.innerText = 'Latest Stories';
+
         sessionStorage.setItem('backTo', 'latest');
 
     } else {
@@ -228,6 +232,8 @@ latestNewsBtn.addEventListener('click', async e => {
 
         latestNewsBtn.innerText = 'Latest Stories';
         document.title = 'Blink - For You';
+
+        headText.innerText = 'Picks For You';
 
         sessionStorage.setItem('backTo', 'foryou');
 
@@ -510,6 +516,10 @@ moreInfoBtn.addEventListener('click', () => {
             .then((data) => {
               // Handle the response data here
               console.log(data.choices[0].text); // This will contain the generated text
+              const card = document.getElementById('ai-info-card');
+              card.innerText = data.choices[0].text;
+              card.style.display = 'flex';
+              moreInfoBtn.style.display = 'none';
             })
             .catch((error) => {
               // Handle any errors here
@@ -535,15 +545,51 @@ searchBtn.addEventListener('click', async e => {
     const latestNewsView = document.getElementById('latest-container');
     const forYouView = document.getElementById('news-container');
     const searchView = document.getElementById('search-container');
+    const articleView = document.getElementById('article-container');
 
     searchView.style.display = 'flex';
     latestNewsView.style.display = 'none';
     forYouView.style.display = 'none';
+    articleView.style.display = 'none';
 
     const header = document.getElementById('label');
     header.innerText = `Results For ${searchbar.value}`;
 
 });
+
+searchbar.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        searchBtn.click();
+    }
+})
+
+searchbar.addEventListener('search', (e) => {
+    const latestNewsView = document.getElementById('latest-container');
+    const forYouView = document.getElementById('news-container');
+    const searchView = document.getElementById('search-container');
+    const articleView = document.getElementById('article-container');
+
+    const text = document.querySelector('#label');
+    
+    if (sessionStorage.getItem('backTo') === 'latest') {
+        searchView.style.display = 'none';
+        latestNewsView.style.display = 'flex';
+        forYouView.style.display = 'none';
+        articleView.style.display = 'none';
+        text.innerText = 'Latest Stories';
+    } else {
+        searchView.style.display = 'none';
+        latestNewsView.style.display = 'none';
+        forYouView.style.display = 'flex';
+        articleView.style.display = 'none';
+        text.innerText = 'Picks For You';
+    }
+
+    const searchFeed = document.getElementById('search-container');
+    searchFeed.innerHTML = '';
+
+})
 
 const blinkBtn = document.querySelector('.blink');
 blinkBtn.addEventListener('click', () => {
@@ -552,8 +598,9 @@ blinkBtn.addEventListener('click', () => {
     const forYouView = document.getElementById('news-container');
     const searchView = document.getElementById('search-container');
 
-    searchView.style.display = 'none';
     latestNewsView.style.display = 'none';
     forYouView.style.display = 'flex';
+    searchView.style.display = 'none'
 
 })
+

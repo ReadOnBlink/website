@@ -527,7 +527,12 @@ main #app #article-container .info p {
   opacity: 50%;
 }
 
-main #app #article-container .info a {
+main #app #article-container .info .action-btns {
+  display: flex;
+  align-items: center;
+}
+
+main #app #article-container .info .action-btns a {
   text-decoration: none;
   color: var(--accent);
   padding: 8px;
@@ -535,6 +540,8 @@ main #app #article-container .info a {
   background: rgba(140, 82, 255, 0.25);
   font-size: 18px;
   transition: 0.5s ease;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 main #app #article-container .info a:hover {
@@ -546,6 +553,51 @@ main #app #article-container #article-description {
   color: white;
   opacity: 50%;
   margin-bottom: 48px;
+}
+
+main #app #article-container #ai-info-card {
+  /* From https://css.glass */
+  background: rgba(90, 0, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.4px);
+  -webkit-backdrop-filter: blur(6.4px);
+  border: 1px solid rgba(90, 0, 255, 0.49);
+  display: none;
+  flex-direction: column;
+  padding: 32px;
+  margin-bottom: 48px;
+}
+
+main #app #article-container #ai-info-card .top-bar {
+  display: flex;
+  align-items: center;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+main #app #article-container #ai-info-card .top-bar span {
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+main #app #article-container #ai-info-card .top-bar p {
+  color: var(--accent);
+  font-size: 18px;
+}
+
+main #app #article-container #ai-info-card #ai-info-text {
+  margin-bottom: 32px;
+}
+
+main #app #article-container #ai-info-card .bottom-bar {
+  display: flex;
+  justify-content: end;
+  color: var(--accent);
+}
+
+main #app #article-container #ai-info-card .bottom-bar span {
+  cursor: pointer;
 }
 
 main #app #article-container button {
@@ -731,6 +783,47 @@ main #app #search-container article p {
     width: 100%;
     height: 192px;
     margin-bottom: 18px;
+  }
+
+  main #app #latest-container {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+  }
+
+  main #app #latest-container article {
+    flex-direction: column;
+  }
+
+  main #app #latest-container article img {
+    width: 100%;
+    height: 192px;
+    margin-bottom: 18px;
+  }
+
+  main #app #article-container {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+  }
+
+  main #app #article-container h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  main #app #article-container .info p {
+    font-size: 12px;
+  }
+
+  main #app #article-container .info {
+    margin-bottom: 32px;
+  }
+
+  main #app #article-container #article-description {
+    margin-bottom: 32px;
+  }
+
+  main #app #article-container #ai-info-card {
+    margin-bottom: 32px;
   }
 }
 

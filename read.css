@@ -46,7 +46,7 @@ main aside ul {
   flex-direction: column;
 }
 
-main aside ul #searchbar {
+main aside ul #searchbar-mobile {
   display: none;
 }
 
@@ -91,6 +91,7 @@ main nav {
 main nav h1 {
   color: var(--accent);
   font-size: 32px;
+  cursor: pointer;
 }
 
 main nav #searchbar {
@@ -690,7 +691,7 @@ main #app #search-container article p {
     width: 100%;
   }
 
-  main aside ul #searchbar {
+  main aside ul #searchbar-mobile {
     width: 100%;
     display: flex;
     align-items: center;
@@ -711,13 +712,13 @@ main #app #search-container article p {
     transition: 0.5s ease;
   }
 
-  main aside ul #searchbar span {
+  main aside ul #searchbar-mobile span {
     margin: 0;
     padding: 0;
     transition: 0.5s ease;
   }
 
-  main aside ul #searchbar input {
+  main aside ul #searchbar-mobile input {
     font-family: "Nunito", sans-serif;
     font-weight: 500;
     background: transparent;
@@ -770,6 +771,11 @@ main #app #search-container article p {
     margin-left: 12.5%;
   }
 
+  main #app header #label {
+    width: 100%;
+    word-wrap: break-word;
+  }
+
   main #app #news-container {
     margin-left: 12.5%;
     margin-right: 12.5%;
@@ -795,6 +801,21 @@ main #app #search-container article p {
   }
 
   main #app #latest-container article img {
+    width: 100%;
+    height: 192px;
+    margin-bottom: 18px;
+  }
+
+  main #app #search-container {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+  }
+
+  main #app #search-container article {
+    flex-direction: column;
+  }
+
+  main #app #search-container article img {
     width: 100%;
     height: 192px;
     margin-bottom: 18px;

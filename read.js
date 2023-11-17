@@ -190,6 +190,8 @@ const latestNewsBtn = document.getElementById('switch-to-latest-btn');
 const latestNewsContainer = document.getElementById('latest-container');
 latestNewsBtn.addEventListener('click', async e => {
 
+    const menu = document.querySelector('aside');
+
     let datakey;
 
     const docRef = doc(db, 'tooling', 'kR19VTNHvTxVw9FgxZYB');
@@ -239,6 +241,8 @@ latestNewsBtn.addEventListener('click', async e => {
 
     }
 
+    menu.style.right = '-100%';
+
 });
 
 const backToNewsBtn = document.getElementById('back-to-news-btn');
@@ -246,21 +250,34 @@ backToNewsBtn.addEventListener('click', () => {
 
     const newsfeed = document.getElementById('news-container');
     const articleWindow = document.getElementById('article-container');
+    const searchContainer = document.getElementById('search-container');
 
     if (sessionStorage.getItem('backTo') === 'latest') {
         latestNewsContainer.style.display = 'flex';
         newsfeed.style.display = 'none';
+        searchContainer.style.display = 'none';
         articleWindow.style.display = 'none';
     
         const UIHeader = document.querySelector('header');
         UIHeader.style.display = 'flex';
     
         document.title = 'Blink - Latest News';
+    } else if (sessionStorage.getItem('backTo') === 'search') {
+        latestNewsContainer.style.display = 'none';
+        newsfeed.style.display = 'none';
+        searchContainer.style.display = 'flex';
+        articleWindow.style.display = 'none';
+    
+        const UIHeader = document.querySelector('header');
+        UIHeader.style.display = 'flex';
+    
+        document.title = 'Blink - For You';
     } else {
         latestNewsContainer.style.display = 'none';
         newsfeed.style.display = 'flex';
         articleWindow.style.display = 'none';
-    
+        searchContainer.style.display = 'none';
+
         const UIHeader = document.querySelector('header');
         UIHeader.style.display = 'flex';
     
@@ -294,7 +311,6 @@ async function searchNews(key, query) {
             return response.json();
         })
         .then(function (data) {
-            console.log('latest news', data.articles);
             for (let i = 0; i < data.articles.length; i++) {
                 const container = document.getElementById('search-container');
                 const article = document.createElement('article');
@@ -333,16 +349,6 @@ async function searchNews(key, query) {
                     articleContainer.style.display = 'flex';
                     document.title = data.articles[i]['title'];
                 })
-                // articles[i].title
-                console.log("Title: " + data.articles[i]['title']);
-                // articles[i].description
-                console.log("Description: " + data.articles[i]['description']);
-                // You can replace {property} below with any of the article properties returned by the API.
-                // articles[i].{property}
-                // console.log(articles[i]['{property}']);
-
-                // Delete this line to display all the articles returned by the request. Currently only the first article is displayed.
-
             };
         })
 }
@@ -354,7 +360,6 @@ async function getLatestNews(key) {
             return response.json();
         })
         .then(function (data) {
-            console.log('latest news', data.articles);
             for (let i = 0; i < data.articles.length; i++) {
                 const container = document.getElementById('latest-container');
                 const article = document.createElement('article');
@@ -376,6 +381,7 @@ async function getLatestNews(key) {
                 article.appendChild(contentContainer)
                 container.appendChild(article);
                 article.addEventListener('click', () => {
+                    sessionStorage.setItem('currentlyOn', 'article');
                     const UIHeader = document.querySelector('header');
                     UIHeader.style.display = 'none';
                     const articleHeadImg = document.getElementById('article-head-image');
@@ -393,16 +399,6 @@ async function getLatestNews(key) {
                     articleContainer.style.display = 'flex';
                     document.title = data.articles[i]['title'];
                 })
-                // articles[i].title
-                console.log("Title: " + data.articles[i]['title']);
-                // articles[i].description
-                console.log("Description: " + data.articles[i]['description']);
-                // You can replace {property} below with any of the article properties returned by the API.
-                // articles[i].{property}
-                // console.log(articles[i]['{property}']);
-
-                // Delete this line to display all the articles returned by the request. Currently only the first article is displayed.
-
             };
             latestNewsLoaded = true;
         })
@@ -416,9 +412,6 @@ async function getNews(key, preferences) {
                 return response.json();
             })
             .then(function (data) {
-                console.log('for you news', data.articles);
-                console.log(data.articles.length);
-
                 for (let i = 0; i < data.articles.length; i++) {
                     const container = document.getElementById('news-container');
                     const article = document.createElement('article');
@@ -440,6 +433,7 @@ async function getNews(key, preferences) {
                     article.appendChild(contentContainer)
                     container.appendChild(article);
                     article.addEventListener('click', () => {
+                        sessionStorage.setItem('currentlyOn', 'article');
                         const UIHeader = document.querySelector('header');
                         UIHeader.style.display = 'none';
                         const articleHeadImg = document.getElementById('article-head-image');
@@ -457,16 +451,6 @@ async function getNews(key, preferences) {
                         articleContainer.style.display = 'flex';
                         document.title = data.articles[i]['title']
                     })
-                    // articles[i].title
-                    console.log("Title: " + data.articles[i]['title']);
-                    // articles[i].description
-                    console.log("Description: " + data.articles[i]['description']);
-                    // You can replace {property} below with any of the article properties returned by the API.
-                    // articles[i].{property}
-                    // console.log(articles[i]['{property}']);
-
-                    // Delete this line to display all the articles returned by the request. Currently only the first article is displayed.
-
                 };
             });
     }
@@ -540,6 +524,9 @@ searchBtn.addEventListener('click', async e => {
 
     let newskey = docSnap.data().key;
 
+    const searchFeed = document.getElementById('search-container');
+    searchFeed.innerHTML = '';
+
     await searchNews(newskey, searchbar.value);
 
     const latestNewsView = document.getElementById('latest-container');
@@ -554,6 +541,13 @@ searchBtn.addEventListener('click', async e => {
 
     const header = document.getElementById('label');
     header.innerText = `Results For ${searchbar.value}`;
+
+    if (sessionStorage.getItem('currentlyOn') === 'article') {
+        const fullHeader = document.querySelector('header');
+        fullHeader.style.display = 'flex';
+    }
+
+    sessionStorage.setItem('backTo', 'search');
 
 });
 
@@ -591,6 +585,80 @@ searchbar.addEventListener('search', (e) => {
 
 })
 
+// mobile searchbar functions
+const mobileSearchbar = document.getElementById('search-mobile');
+const mobileSearchBtn = document.getElementById('search-btn-mobile');
+
+mobileSearchBtn.addEventListener('click', async e => {
+
+    const menu = document.querySelector('aside');
+
+    console.log('Query: ', mobileSearchbar.value);
+
+    let newskey = docSnap.data().key;
+
+    const searchFeed = document.getElementById('search-container');
+    searchFeed.innerHTML = '';
+
+    await searchNews(newskey, mobileSearchbar.value);
+
+    const latestNewsView = document.getElementById('latest-container');
+    const forYouView = document.getElementById('news-container');
+    const searchView = document.getElementById('search-container');
+    const articleView = document.getElementById('article-container');
+
+    searchView.style.display = 'flex';
+    latestNewsView.style.display = 'none';
+    forYouView.style.display = 'none';
+    articleView.style.display = 'none';
+
+    const header = document.getElementById('label');
+    header.innerText = `Results For ${mobileSearchbar.value}`;
+
+    if (sessionStorage.getItem('currentlyOn') === 'article') {
+        const fullHeader = document.querySelector('header');
+        fullHeader.style.display = 'flex';
+    }
+
+    menu.style.right = '-100%';
+    sessionStorage.setItem('backTo', 'search');
+
+});
+
+mobileSearchbar.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        mobileSearchBtn.click();
+    }
+})
+
+mobileSearchbar.addEventListener('search', (e) => {
+    const latestNewsView = document.getElementById('latest-container');
+    const forYouView = document.getElementById('news-container');
+    const searchView = document.getElementById('search-container');
+    const articleView = document.getElementById('article-container');
+
+    const text = document.querySelector('#label');
+    
+    if (sessionStorage.getItem('backTo') === 'latest') {
+        searchView.style.display = 'none';
+        latestNewsView.style.display = 'flex';
+        forYouView.style.display = 'none';
+        articleView.style.display = 'none';
+        text.innerText = 'Latest Stories';
+    } else {
+        searchView.style.display = 'none';
+        latestNewsView.style.display = 'none';
+        forYouView.style.display = 'flex';
+        articleView.style.display = 'none';
+        text.innerText = 'Picks For You';
+    }
+
+    const searchFeed = document.getElementById('search-container');
+    searchFeed.innerHTML = '';
+
+})
+
 const blinkBtn = document.querySelector('.blink');
 blinkBtn.addEventListener('click', () => {
 
@@ -600,7 +668,10 @@ blinkBtn.addEventListener('click', () => {
 
     latestNewsView.style.display = 'none';
     forYouView.style.display = 'flex';
-    searchView.style.display = 'none'
+    searchView.style.display = 'none';
+
+    const header = document.getElementById('label');
+    header.innerText = 'Picks For You';
 
 })
 

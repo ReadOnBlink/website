@@ -673,5 +673,15 @@ blinkBtn.addEventListener('click', () => {
     const header = document.getElementById('label');
     header.innerText = 'Picks For You';
 
+    const fullHeader = document.querySelector('header');
+    fullHeader.style.display = 'flex';
+
+    const switchBtn = document.getElementById('switch-to-latest-btn');
+    switchBtn.innerText = 'Latest Stories';
+
 })
 
+const goToSettingsBtn = document.getElementById('settings-btn');
+goToSettingsBtn.addEventListener('click', () => {
+    location.href = '/account.html';
+})

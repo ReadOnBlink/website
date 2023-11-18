@@ -10,6 +10,7 @@ export default defineConfig({
         login: resolve(__dirname, 'auth/login.html'),
         getstarted: resolve(__dirname, 'auth/getstarted.html'),
         read: resolve(__dirname, 'read.html'),
+        account: resolve(__dirname, 'account.html'),
       },
     },
   },

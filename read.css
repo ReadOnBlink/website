@@ -243,12 +243,140 @@ main #onboarding #interests form button:hover {
   filter: brightness(1.1);
 }
 
+main #onboarding #gnews {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+main #onboarding #gnews h1 {
+  color: var(--accent);
+  font-size: 36px;
+  margin-bottom: 64px;
+}
+
+main #onboarding #gnews #gnews-form-onboarding {
+  display: flex;
+  flex-direction: column;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  opacity: 0.94;
+  background: rgba(140, 82, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 48px;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card img {
+  height: 42px;
+  width: 42px;
+  margin-bottom: 24px;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card p {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card .input {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.25);
+  padding: 16px;
+  width: 100%;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card .input span {
+  color: var(--accent);
+  margin-right: 5%;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card .input input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  opacity: 50%;
+  font-family: "Nunito", sans-serif;
+  margin-left: 2.5%;
+  transition: 0.5s ease;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card .input input:focus {
+  opacity: 100%;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card .input input:hover {
+  opacity: 100%;
+}
+
+main #onboarding #gnews #gnews-form-onboarding .card .container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+main
+  #onboarding
+  #gnews
+  #gnews-form-onboarding
+  .card
+  .container
+  #help-gnews-btn {
+  color: var(--accent);
+  padding: 6px;
+  border-radius: 50%;
+  background: rgba(140, 82, 255, 0.25);
+  font-size: 16px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+main
+  #onboarding
+  #gnews
+  #gnews-form-onboarding
+  .card
+  .container
+  #help-gnews-btn:hover {
+  filter: brightness(1.5);
+}
+
+main #onboarding #gnews #gnews-form-onboarding #submit-gnews-btn {
+  border-radius: 5px;
+  color: white;
+  padding: 16px 16px;
+  width: 100%;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 16px;
+}
+
+main #onboarding #gnews #gnews-form-onboarding #submit-gnews-btn:hover {
+  filter: brightness(1.1);
+}
+
 main #onboarding #openai {
   display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
+// STOP
 
 main #onboarding #openai h1 {
   color: var(--accent);
@@ -749,6 +877,30 @@ main #app #search-container article p {
   }
   main #onboarding #openai #openai-form-onboarding .card p {
     font-size: 14px;
+  }
+
+  main #onboarding #interests h1 {
+    font-size: 32px;
+  }
+
+  main #onboarding #gnews #gnews-form-onboarding .card {
+    padding: 16px 24px;
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+
+  main #onboarding #gnews #openai-form-onboarding .card img {
+    width: 38px;
+    height: 38px;
+    margin-top: 8px;
+  }
+  main #onboarding #gnews #gnews-form-onboarding .card p {
+    font-size: 14px;
+  }
+
+  main #onboarding #gnews #gnews-form-onboarding #submit-gnews-btn {
+    width: 85%;
+    margin-left: 32px;
   }
 
   main nav {

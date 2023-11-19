@@ -9,6 +9,8 @@ console.log(firebase);
 const auth = getAuth(firebase);
 const db = getFirestore(firebase);
 
+var GNewsAPIKey;
+
 let latestNewsLoaded;
 let hasOpenAI;
 let openaiApiKey;
@@ -28,6 +30,8 @@ signOutBtn.addEventListener('click', () => {
 
 var dateText = document.getElementById('date');
 
+var userUID;
+
 // check if user is allowed on page and if they have completed onboarding
 onAuthStateChanged(auth, async user => {
 
@@ -35,6 +39,8 @@ onAuthStateChanged(auth, async user => {
         console.log('welcome user!')
         const docRef = doc(db, "users", auth.currentUser.uid)
         const docSnap = await getDoc(docRef);
+        userUID = user.uid;
+        console.log('ln 41: ', userUID);
         const appView = document.getElementById('app');
         const onboardingView = document.getElementById('onboarding');
         const navbar = document.querySelector('nav');
@@ -113,16 +119,35 @@ onboardingInterestsForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const interestsView = document.getElementById('interests');
-    const openAIView = document.getElementById('openai');
+    const GNewsView = document.getElementById('gnews');
 
     if (onboardingUserInterests.length === 0) {
         alert('Please add in interests!')
     } else {
         interestsView.style.display = 'none';
-        openAIView.style.display = 'flex';
+        GNewsView.style.display = 'flex';
     }
 
 });
+
+const onboardingGNewsForm = document.getElementById('gnews-form-onboarding');
+onboardingGNewsForm.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
+    const gnewsView = document.getElementById('gnews');
+    const openaiView = document.getElementById('openai');
+
+    let value = onboardingGNewsForm.gnews_api_key.value;
+    if (!value || value === '') {
+        alert('Please Enter A GNews API Key!');
+    } else {
+        sessionStorage.setItem('gnewsOnboardingKey', value);
+        gnewsView.style.display = 'none';
+        openaiView.style.display = 'flex';
+    }
+
+})
 
 const openaiForm = document.getElementById('openai-form-onboarding');
 openaiForm.addEventListener('submit', async e => {
@@ -131,12 +156,17 @@ openaiForm.addEventListener('submit', async e => {
 
     const key = openaiForm.openai_api_key.value;
 
-    await setDoc(doc(db, 'users', auth.currentUser.uid), {
-        openai: key,
-        preferences: onboardingUserInterests,
-        uid: auth.currentUser.uid,
-        username: auth.currentUser.displayName
-    });
+    try {
+        await setDoc(doc(db, 'users', auth.currentUser.uid), {
+            gnews: sessionStorage.getItem('gnewsOnboardingKey'),
+            openai: key,
+            preferences: onboardingUserInterests,
+            uid: auth.currentUser.uid,
+            username: auth.currentUser.displayName
+        });
+    } catch (error) {
+        console.error("Error writing to Firestore:", error);
+    }
 
     console.log('document added!')
 
@@ -156,6 +186,7 @@ skipBtn.addEventListener('click', async e => {
     const key = '';
 
     await setDoc(doc(db, 'users', auth.currentUser.uid), {
+        gnews: sessionStorage.getItem('gnewsOnboardingKey'),
         openai: key,
         preferences: onboardingUserInterests,
         uid: auth.currentUser.uid,
@@ -192,15 +223,15 @@ latestNewsBtn.addEventListener('click', async e => {
 
     const menu = document.querySelector('aside');
 
-    let datakey;
+    // let datakey;
 
-    const docRef = doc(db, 'tooling', 'kR19VTNHvTxVw9FgxZYB');
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-        datakey = docSnap.data().key;
-    } else {
-        console.log('document does not exist!');
-    }
+    // const docRef = doc(db, 'tooling', 'kR19VTNHvTxVw9FgxZYB');
+    // const docSnap = await getDoc(docRef);
+    // if (docSnap.exists()) {
+    //     datakey = docSnap.data().key;
+    // } else {
+    //     console.log('document does not exist!');
+    // }
 
     const newsfeed = document.getElementById('news-container');
     const articleWindow = document.getElementById('article-container');
@@ -212,7 +243,7 @@ latestNewsBtn.addEventListener('click', async e => {
         if (latestNewsLoaded === true) {
             console.log('latest news already loaded!');
         } else {
-            await getLatestNews(datakey);
+            await getLatestNews(GNewsAPIKey);
         }
 
         latestNewsContainer.style.display = 'flex';
@@ -286,16 +317,24 @@ backToNewsBtn.addEventListener('click', () => {
 
 });
 
-
 // App functionality
-const docRef = doc(db, 'tooling', 'kR19VTNHvTxVw9FgxZYB');
-const docSnap = await getDoc(docRef);
-if (docSnap.exists()) {
-    var datakey = docSnap.data().key;
-    await getNews(datakey, await getPreferences(auth.currentUser.uid));
-} else {
-    console.log('document does not exist!');
-}
+// console.log('this is the one from onAuthChanged:', userUID);
+setTimeout(async () => {
+    const newDocRef = doc(db, 'users', auth.currentUser.uid);
+    const newDocSnap = await getDoc(newDocRef);
+    if (newDocSnap.exists()) {
+        console.log('GNews API Key:', newDocSnap.data().gnews);
+        GNewsAPIKey = newDocSnap.data().gnews;
+        console.log('this is the gnews variable', GNewsAPIKey)
+        await getNews(GNewsAPIKey, await getPreferences(auth.currentUser.uid));
+    } else {
+        console.log('document does not exist!');
+        const text = document.createElement('p');
+        text.innerText = "Oops, looks like you don't have a GNews API key!";
+        const parent = document.getElementById('news-container');
+        parent.appendChild(text);
+    }
+}, 500)
 
 async function getPreferences(user) {
     const userDocRef = doc(db, 'users', user);
@@ -522,12 +561,12 @@ searchBtn.addEventListener('click', async e => {
 
     console.log('Query: ', searchbar.value);
 
-    let newskey = docSnap.data().key;
+    // let newskey = docSnap.data().key;
 
     const searchFeed = document.getElementById('search-container');
     searchFeed.innerHTML = '';
 
-    await searchNews(newskey, searchbar.value);
+    await searchNews(GNewsAPIKey, searchbar.value);
 
     const latestNewsView = document.getElementById('latest-container');
     const forYouView = document.getElementById('news-container');
@@ -595,12 +634,12 @@ mobileSearchBtn.addEventListener('click', async e => {
 
     console.log('Query: ', mobileSearchbar.value);
 
-    let newskey = docSnap.data().key;
+    // let newskey = docSnap.data().key;
 
     const searchFeed = document.getElementById('search-container');
     searchFeed.innerHTML = '';
 
-    await searchNews(newskey, mobileSearchbar.value);
+    await searchNews(GNewsAPIKey, mobileSearchbar.value);
 
     const latestNewsView = document.getElementById('latest-container');
     const forYouView = document.getElementById('news-container');

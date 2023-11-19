@@ -69,6 +69,23 @@
                     <button type="submit">Go</button>
                 </form>
             </div>
+            <div class="tab" id="gnews" data-m="bounce-up">
+                <h1>Start Reading</h1>
+                <form id="gnews-form-onboarding">
+                    <div class="card">
+                        <!-- <img src="assets/logos/gnews.png"> -->
+                        <p>We use GNews to provide all of your news and information.<br>Without adding a GNews API key, you will not be able to use Blink.</p>
+                        <div class="input">
+                            <span class="material-symbols-outlined">vpn_key</span>
+                            <input type="text" name="gnews_api_key" placeholder="GNews API Key">
+                        </div>
+                        <div class="container">
+                            <span id="help-gnews-btn" class="material-symbols-outlined">question_mark</span>
+                        </div>
+                    </div>
+                    <button id="submit-gnews-btn" type="submit">Continue</button>
+                </form>
+            </div>
             <div class="tab" id="openai" data-m="bounce-up">
                 <h1>Integrate OpenAI</h1>
                 <form id="openai-form-onboarding">

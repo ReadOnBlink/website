@@ -27,6 +27,8 @@ main {
 }
 
 main nav {
+  position: absolute;
+  z-index: 5;
   display: flex;
   align-items: center;
   height: fit-content;
@@ -53,5 +55,131 @@ main #app {
   width: 100%;
   flex-direction: column;
   align-items: center;
+  padding-top: 128px;
+}
+
+main #app h1 {
+  font-size: 48px;
+  margin-top: 64px;
+}
+
+main #app #email {
+  opacity: 50%;
+  margin-bottom: 96px;
+}
+
+main #app ul {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+main #app ul .setting {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 12px 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+main #app ul .setting:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #app ul .setting span {
+  color: var(--accent);
+  padding: 6px;
+  border-radius: 50%;
+  background: rgba(140, 82, 255, 0.25);
+  font-size: 18px;
+  margin-right: 14px;
+}
+
+main #app ul .setting p {
+  font-weight: 500;
+  transition: 0.5s ease;
+}
+
+main .tab {
+  display: none;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
   padding-top: 32px;
+}
+
+@media (max-width: 400px) {
+  main nav {
+    padding: 48px 0px 48px;
+  }
+
+  main nav #back-btn {
+    margin: 0;
+    margin-left: 12.5%;
+  }
+
+  main #app h1 {
+    margin-top: 0px;
+  }
+
+  main #app #email {
+    margin-bottom: 56px;
+  }
+
+  main #app ul {
+    width: 75%;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 767px) {
+  main nav {
+    padding: 48px 0px 48px;
+  }
+
+  main nav #back-btn {
+    margin: 0;
+    margin-left: 12.5%;
+  }
+
+  main #app #email {
+    margin-bottom: 64px;
+  }
+
+  main #app ul {
+    width: 75%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  main nav {
+    padding: 48px 0px 48px;
+  }
+
+  main nav #back-btn {
+    margin: 0;
+    margin-left: 12.5%;
+  }
+
+  main #app #email {
+    margin-bottom: 64px;
+  }
+
+  main #app ul {
+    width: 50%;
+  }
 }

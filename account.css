@@ -26,6 +26,112 @@ main {
   width: 100%;
 }
 
+main dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  border-radius: 10px;
+  padding: 32px;
+  box-shadow: 25px 25px 25px rgba(0, 0, 0, 0.1);
+}
+
+main dialog form .text {
+  margin-bottom: 32px;
+}
+
+main dialog form div {
+  border-radius: 5px;
+  background: #f5f5f7;
+  border: none;
+  padding: 20px 20px;
+  margin-top: 6.5px;
+  margin-bottom: 6.5px;
+  display: flex;
+  align-items: center;
+}
+
+main dialog form div span {
+  color: var(--accent);
+  margin-right: 14px;
+}
+
+main dialog form div input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  width: 90%;
+  opacity: 50%;
+  font-weight: 500;
+  color: black;
+  transition: 0.5s ease;
+}
+
+main dialog form #submit {
+  margin-top: 13px;
+  color: white;
+  background: var(--accent);
+  width: 100%;
+  padding: 20px 20px;
+  font-family: "Nunito", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 32px;
+}
+
+main dialog form #google {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: white;
+  padding: 20px 20px;
+  font-family: "Nunito", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  background: rgba(140, 82, 255, 0.1);
+  font-size: 14px;
+}
+
+main dialog form #google-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: black;
+  padding: 20px 20px;
+  font-family: "Nunito", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  background: #f5f5f7;
+  font-size: 14px;
+}
+
+main dialog form #google img {
+  height: 16px;
+  width: 16px;
+  margin-right: 15%;
+}
+
+main dialog form #google p {
+  opacity: 50%;
+}
+
+main dialog form #google-btn img {
+  height: 16px;
+  width: 16px;
+  margin-right: 25%;
+}
+
 main nav {
   position: absolute;
   z-index: 5;
@@ -120,7 +226,252 @@ main .tab {
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding-top: 32px;
+  padding-top: 128px;
+}
+
+main .tab h1 {
+  font-size: 48px;
+  margin-top: 64px;
+  margin-bottom: 96px;
+}
+
+main #account-tab #change-username-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+main #account-tab #change-username-form .container {
+  display: flex;
+  align-items: center;
+}
+
+main #account-tab #change-username-form .container label {
+  margin-bottom: 8px;
+}
+
+main #account-tab #change-username-form .container input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 12px 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 6px;
+  outline: none;
+}
+
+main #account-tab #change-username-form .container input:focus {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #account-tab #change-username-form .container button {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  background: var(--accent);
+  border: none;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+main #account-tab #change-username-form .container button:hover {
+  filter: brightness(1.25);
+}
+
+main #account-tab #change-email-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+main #account-tab #change-email-form .container {
+  display: flex;
+  align-items: center;
+}
+
+main #account-tab #change-email-form .container label {
+  margin-bottom: 8px;
+}
+
+main #account-tab #change-email-form .container input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 12px 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 6px;
+  outline: none;
+}
+
+main #account-tab #change-email-form .container input:focus {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #account-tab #change-email-form .container button {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  background: var(--accent);
+  border: none;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+main #account-tab #change-email-form .container button:hover {
+  filter: brightness(1.25);
+}
+
+main .tab .back-to-main {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 12px 16px;
+  color: white;
+  cursor: pointer;
+  background: var(--accent);
+  border: none;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+// stuff
+
+main #security-tab h1 {
+  font-size: 48px;
+  margin-top: 64px;
+  margin-bottom: 96px;
+}
+
+main #security-tab #change-password-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+main #security-tab #change-password-form .container {
+  display: flex;
+  align-items: center;
+}
+
+main #security-tab #change-password-form .container label {
+  margin-bottom: 8px;
+}
+
+main #security-tab #change-password-form .container input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 12px 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 6px;
+  outline: none;
+}
+
+main #security-tab #change-password-form .container input:focus {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #security-tab #change-password-form .container button {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  background: var(--accent);
+  border: none;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+main #security-tab #change-password-form .container button:hover {
+  filter: brightness(1.25);
+}
+
+// more stuff
+
+main #integrations-tab form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+main #integrations-tab #edit-gnews-form {
+  margin-bottom: 32px;
+}
+
+main #integrations-tab #edit-openai-form {
+  margin-bottom: 32px;
+}
+
+main #integrations-tab form .container {
+  display: flex;
+  align-items: center;
+}
+
+main #integrations-tab form .container label {
+  margin-bottom: 8px;
+}
+
+main #integrations-tab form .container input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 12px 16px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 6px;
+  outline: none;
+}
+
+main #integrations-tab form .container input:focus {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #integrations-tab form .container button {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  background: var(--accent);
+  border: none;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+main #integrations-tab form .container button:hover {
+  filter: brightness(1.25);
 }
 
 @media (max-width: 400px) {

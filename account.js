@@ -1,9 +1,14 @@
 import { app as firebase } from './firebase-config.js';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, updateProfile, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, reauthenticateWithCredential, verifyBeforeUpdateEmail, updatePassword } from 'firebase/auth';
+import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 
 console.log(firebase);
 
 const auth = getAuth(firebase);
+const provider = new GoogleAuthProvider(auth);
+
+const db = getFirestore(firebase);
+
 let currentlyOn;
 
 onAuthStateChanged(auth, async user => {
@@ -14,6 +19,10 @@ onAuthStateChanged(auth, async user => {
         const email = document.getElementById('email');
         username.innerText = user.displayName;
         email.innerText = user.email;
+        const changeUsernameInput = document.getElementById('new_username');
+        changeUsernameInput.placeholder = user.displayName;
+        const changeEmailInput = document.getElementById('new_email');
+        changeEmailInput.placeholder = user.email;
     } else {
         location.href = '/auth/login.html'
     }
@@ -30,6 +39,8 @@ settingBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
         if (btn.id === 'resources') {
             location.href = '/resources.html';
+        } else if (btn.id === 'privacy') {
+            location.href = '/privacy.html';
         }
         const tab = document.getElementById(`${btn.id}-tab`);
         const mainTab = document.getElementById('app');
@@ -47,4 +58,143 @@ backToMainTabBtns.forEach((btn) => {
         mainTab.style.display = 'flex';
         currentTab.style.display = 'none';
     })
+})
+
+const changeUsernameForm = document.getElementById('change-username-form');
+changeUsernameForm.addEventListener('submit', async e => {
+
+    e.preventDefault();
+
+    updateProfile(auth.currentUser, {
+        displayName: changeUsernameForm.new_username.value
+    }).then(() => {
+        location.reload();
+    }).catch((err) => {
+        console.log(err.message);
+    })
+
+});
+
+const reauthModal = document.getElementById('reauth-popup');
+const reauthForm = document.getElementById('reauth-form');
+
+const reauthGoogleBtn = document.getElementById('google-btn');
+
+const changeEmailForm = document.getElementById('change-email-form');
+changeEmailForm.addEventListener('submit', async e => {
+
+    e.preventDefault();
+    reauthModal.showModal();
+
+    sessionStorage.setItem('reauthFor', 'new_email');
+    sessionStorage.setItem('newEmail', changeEmailForm.new_email.value);
+
+});
+
+const changePasswordForm = document.getElementById('change-password-form');
+changePasswordForm.addEventListener('submit', async e => {
+
+    e.preventDefault();
+    reauthModal.showModal();
+
+    sessionStorage.setItem('reauthFor', 'new_password');
+    sessionStorage.setItem('newPassword', changePasswordForm.new_password.value);
+
+});
+
+reauthForm.addEventListener('submit', async e => {
+
+    e.preventDefault();
+
+    const email = reauthForm.email.value;
+    const password = reauthForm.password.value;
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+        console.log('reauthenticated user!')
+        let itemToChange = sessionStorage.getItem('reauthFor')
+        reauthModal.close()
+        if (itemToChange === 'new_email') {
+            let newEmail = sessionStorage.getItem('newEmail');
+            verifyBeforeUpdateEmail(auth.currentUser, newEmail, null)
+            .then(() => {
+                alert('Please Verify Your New Email Address! (You Will Need To Sign In Again)')
+                location.reload();
+            }).catch((err) => {
+                console.log(err.message);
+            })
+        } else if (itemToChange === 'new_password') {
+            let newPassword = sessionStorage.getItem('newPassword');
+            updatePassword(auth.currentUser, newPassword).then(() => {
+                console.log('password updated!')
+                location.reload();
+            }).catch((err) => {
+                console.log(err.message);
+            })
+        }
+    }).catch((err) => {
+        console.log(err.message);
+    })
+
+}) 
+
+reauthGoogleBtn.addEventListener('click', async e => {
+
+    e.preventDefault();
+
+    signInWithPopup(auth, provider)
+    .then(() => {
+        console.log('user reauthed!')
+        let itemToChange = sessionStorage.getItem('reauthFor')
+        reauthModal.close()
+        if (itemToChange === 'new_email') {
+            let newEmail = sessionStorage.getItem('newEmail');
+            verifyBeforeUpdateEmail(auth.currentUser, newEmail, null)
+            .then(() => {
+                alert('Please Verify Your New Email Address! (You Will Need To Sign In Again)')
+                location.reload();
+            }).catch((err) => {
+                console.log(err.message);
+            })
+        }
+    }).catch((err) => {
+        console.log(err.message);
+    })
+
+})
+
+const editGNewsForm = document.getElementById('edit-gnews-form');
+editGNewsForm.addEventListener('submit', async e => {
+
+    e.preventDefault();
+
+    const newKey = editGNewsForm.new_gnews_key.value;
+
+    const docRef = doc(db, 'users', auth.currentUser.uid);
+
+    await updateDoc(docRef, {
+        gnews: newKey,
+    }).then(() => {
+        console.log('updated!')
+        location.reload();
+    })
+
+})
+
+const editOpenAIForm = document.getElementById('edit-openai-form');
+editOpenAIForm.addEventListener('submit', async e => {
+
+    e.preventDefault();
+
+    const newKey = editOpenAIForm.new_openai_key.value;
+
+    const docRef = doc(db, 'users', auth.currentUser.uid);
+
+    await updateDoc(docRef, {
+        openai: newKey,
+    }).then(() => {
+        console.log('updated!')
+        location.reload();
+    })
+
 })

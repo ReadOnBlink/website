@@ -12,6 +12,25 @@
 <body>
 
     <main>
+        <dialog id="reauth-popup">
+            <form id="reauth-form">
+                <h1>Re-authenticate To Continue</h1>
+                <p class="text">Fill in the details you used to sign up</p>
+                <div>
+                    <span class="material-symbols-outlined">mail</span>
+                    <input type="email" name="email" placeholder="Email address">
+                </div>
+                <div>
+                    <span class="material-symbols-outlined">lock</span>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <button id="submit" type="submit">Continue</button>
+                <button id="google-btn">
+                    <img src="/assets/logos/search.png">
+                    <p>Continue with Google</p>
+                </button>
+            </form>
+        </dialog>
         <nav>
             <p id="back-btn">Back</p>
         </nav>
@@ -42,20 +61,51 @@
             </ul>
         </div>
         <div data-m="bounce-up" class="tab" id="account-tab">
-            account
-            <button class="back-to-main">back</button>
+            <h1>Account</h1>
+            <form id="change-username-form">
+                <label>Change Username</label>
+                <div class="container">
+                    <input id="new_username" placeholder="" name="new_username" type="text">
+                    <button type="submit" class="material-symbols-outlined">done</button>
+                </div>
+            </form>
+            <form id="change-email-form">
+                <label>Change Email</label>
+                <div class="container">
+                    <input id="new_email" placeholder="" name="new_email" type="email">
+                    <button type="submit" class="material-symbols-outlined">done</button>
+                </div>
+            </form>
+            <button class="back-to-main">Back</button>
         </div>
         <div data-m="bounce-up" class="tab" id="security-tab">
-            security
-            <button class="back-to-main">back</button>
-        </div>
-        <div data-m="bounce-up" class="tab" id="privacy-tab">
-            privacy
-            <button class="back-to-main">back</button>
+            <h1>Security</h1>
+            <form id="change-password-form">
+                <label>Change Password</label>
+                <div class="container">
+                    <input id="new_password" placeholder="New Password" name="new_password" type="password">
+                    <button type="submit" class="material-symbols-outlined">done</button>
+                </div>
+            </form>
+            <button class="back-to-main">Back</button>
         </div>
         <div data-m="bounce-up" class="tab" id="integrations-tab">
-            integrations
-            <button class="back-to-main">back</button>
+            <h1>Integrations</h1>
+            <form id="edit-gnews-form">
+                <label>Edit GNews API Key</label>
+                <div class="container">
+                    <input id="new_gnews_key" placeholder="New GNews API Key" name="new_gnews_key" type="text">
+                    <button type="submit" class="material-symbols-outlined">done</button>
+                </div>
+            </form>
+            <form id="edit-openai-form">
+                <label>Edit OpenAI API Key</label>
+                <div class="container">
+                    <input id="new_openai_key" placeholder="New OpenAI API Key" name="new_openai_key" type="text">
+                    <button type="submit" class="material-symbols-outlined">done</button>
+                </div>
+            </form>
+            <button class="back-to-main">Back</button>
         </div>
     </main>
 

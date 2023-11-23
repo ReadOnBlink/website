@@ -1,6 +1,6 @@
 import { app as firebase } from './firebase-config.js';
-import { getAuth, onAuthStateChanged, updateProfile, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, reauthenticateWithCredential, verifyBeforeUpdateEmail, updatePassword } from 'firebase/auth';
-import { getFirestore, doc, updateDoc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged, deleteUser, updateProfile, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, reauthenticateWithCredential, verifyBeforeUpdateEmail, updatePassword } from 'firebase/auth';
+import { getFirestore, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 console.log(firebase);
 
@@ -109,6 +109,16 @@ changePasswordForm.addEventListener('submit', async e => {
 
 });
 
+const deleteAccountBtn = document.getElementById('delete-account-btn');
+deleteAccountBtn.addEventListener('click', async e => {
+
+    e.preventDefault();
+    reauthModal.showModal();
+
+    sessionStorage.setItem('reauthFor', 'delete_account');
+
+})
+
 reauthForm.addEventListener('submit', async e => {
 
     e.preventDefault();
@@ -117,7 +127,7 @@ reauthForm.addEventListener('submit', async e => {
     const password = reauthForm.password.value;
 
     signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
+    .then(async function() {
         console.log('reauthenticated user!')
         let itemToChange = sessionStorage.getItem('reauthFor')
         reauthModal.close()
@@ -148,6 +158,14 @@ reauthForm.addEventListener('submit', async e => {
                     alert.style.display = 'none'
                 }, 7500)
             })
+        } else if (itemToChange === 'delete_account') {
+            await deleteDoc(doc(db, 'users', auth.currentUser.uid)).then(() => {
+                deleteUser(auth.currentUser).then(() => {
+                    location.href = '/index.html';
+                }).catch((err) => {
+                    console.log(err.message)
+                })
+            })
         }
     }).catch((err) => {
         console.log(err.message);
@@ -165,7 +183,7 @@ reauthGoogleBtn.addEventListener('click', async e => {
     e.preventDefault();
 
     signInWithPopup(auth, provider)
-    .then(() => {
+    .then(async function() {
         console.log('user reauthed!')
         let itemToChange = sessionStorage.getItem('reauthFor')
         reauthModal.close()
@@ -195,6 +213,14 @@ reauthGoogleBtn.addEventListener('click', async e => {
                 setTimeout(() => {
                     alert.style.display = 'none'
                 }, 7500)
+            })
+        } else if (itemToChange === 'delete_account') {
+            await deleteDoc(doc(db, 'users', auth.currentUser.uid)).then(() => {
+                deleteUser(auth.currentUser).then(() => {
+                    location.href = '/index.html';
+                }).catch((err) => {
+                    console.log(err.message)
+                })
             })
         }
     }).catch((err) => {

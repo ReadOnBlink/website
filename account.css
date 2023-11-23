@@ -357,6 +357,25 @@ main #account-tab #change-email-form .container button:hover {
   filter: brightness(1.25);
 }
 
+main #account-tab #delete-account-btn {
+  margin-top: 8px;
+  color: white;
+  background: red;
+  padding: 20px 20px;
+  font-family: "Nunito", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 64px;
+}
+
+main #account-tab #delete-account-btn:hover {
+  opacity: 0.75;
+}
+
 main .tab .back-to-main {
   font-family: "Nunito", sans-serif;
   font-weight: 800;

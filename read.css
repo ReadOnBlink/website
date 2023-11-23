@@ -163,6 +163,22 @@ main #onboarding {
   align-items: center;
 }
 
+main #onboarding #alert {
+  bottom: 0;
+  right: 0;
+  margin-bottom: 64px;
+  margin-right: 64px;
+  position: absolute;
+  z-index: 19;
+  background: #85ffa5;
+  border: 2.5px solid green;
+  border-radius: 5px;
+  font-family: "Nunito", sans-serif;
+  padding: 16px 24px;
+  font-size: 18px;
+  color: green;
+}
+
 main #onboarding #interests {
   display: flex;
   flex-direction: column;
@@ -377,6 +393,12 @@ main #onboarding #openai {
 }
 
 // STOP
+
+main #onboarding #openai h1 {
+  color: var(--accent);
+  font-size: 36px;
+  margin-bottom: 64px;
+}
 
 main #onboarding #openai h1 {
   color: var(--accent);

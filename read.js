@@ -174,11 +174,6 @@ openaiForm.addEventListener('submit', async e => {
 
 })
 
-const helpBtn = document.getElementById("help-btn");
-helpBtn.addEventListener("click", function () {
-    alert("Helep belep");
-});
-
 const skipBtn = document.getElementById('skip-btn');
 skipBtn.addEventListener('click', async e => {
     e.preventDefault();
@@ -723,4 +718,14 @@ blinkBtn.addEventListener('click', () => {
 const goToSettingsBtn = document.getElementById('settings-btn');
 goToSettingsBtn.addEventListener('click', () => {
     location.href = '/account.html';
+})
+
+const helpGNewsBtn = document.getElementById('help-gnews-btn');
+helpGNewsBtn.addEventListener('click', () => {
+    location.href = '/resources.html';
+});
+
+const helpOpenAIBtn = document.getElementById('help-btn');
+helpOpenAIBtn.addEventListener('click', () => {
+    location.href = '/resources.html';
 })

@@ -11,6 +11,7 @@ export default defineConfig({
         getstarted: resolve(__dirname, 'auth/getstarted.html'),
         read: resolve(__dirname, 'read.html'),
         account: resolve(__dirname, 'account.html'),
+        resources: resolve(__dirname, 'resources.html'),
       },
     },
   },

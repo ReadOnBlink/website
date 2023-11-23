@@ -11,6 +11,8 @@ const db = getFirestore(firebase);
 
 let currentlyOn;
 
+const alert = document.getElementById('alert');
+
 onAuthStateChanged(auth, async user => {
 
     if (user) {
@@ -71,6 +73,11 @@ changeUsernameForm.addEventListener('submit', async e => {
         location.reload();
     }).catch((err) => {
         console.log(err.message);
+        alert.innerText = err.message;
+        alert.style.display = 'flex';
+        setTimeout(() => {
+            alert.style.display = 'none'
+        }, 7500)
     })
 
 });
@@ -122,6 +129,11 @@ reauthForm.addEventListener('submit', async e => {
                 location.reload();
             }).catch((err) => {
                 console.log(err.message);
+                alert.innerText = err.message;
+                alert.style.display = 'flex';
+                setTimeout(() => {
+                    alert.style.display = 'none'
+                }, 7500)
             })
         } else if (itemToChange === 'new_password') {
             let newPassword = sessionStorage.getItem('newPassword');
@@ -130,10 +142,20 @@ reauthForm.addEventListener('submit', async e => {
                 location.reload();
             }).catch((err) => {
                 console.log(err.message);
+                alert.innerText = err.message;
+                alert.style.display = 'flex';
+                setTimeout(() => {
+                    alert.style.display = 'none'
+                }, 7500)
             })
         }
     }).catch((err) => {
         console.log(err.message);
+        alert.innerText = err.message;
+        alert.style.display = 'flex';
+        setTimeout(() => {
+            alert.style.display = 'none'
+        }, 7500)
     })
 
 }) 
@@ -155,11 +177,34 @@ reauthGoogleBtn.addEventListener('click', async e => {
                 location.reload();
             }).catch((err) => {
                 console.log(err.message);
+                alert.innerText = err.message;
+                alert.style.display = 'flex';
+                setTimeout(() => {
+                    alert.style.display = 'none'
+                }, 7500)
+            })
+        } else if (itemToChange === 'new_password') {
+            let newPassword = sessionStorage.getItem('newPassword');
+            updatePassword(auth.currentUser, newPassword).then(() => {
+                console.log('password updated!')
+                location.reload();
+            }).catch((err) => {
+                console.log(err.message);
+                alert.innerText = err.message;
+                alert.style.display = 'flex';
+                setTimeout(() => {
+                    alert.style.display = 'none'
+                }, 7500)
             })
         }
     }).catch((err) => {
         console.log(err.message);
-    })
+        alert.innerText = err.message;
+        alert.style.display = 'flex';
+        setTimeout(() => {
+            alert.style.display = 'none'
+        }, 7500)
+})
 
 })
 
@@ -177,6 +222,12 @@ editGNewsForm.addEventListener('submit', async e => {
     }).then(() => {
         console.log('updated!')
         location.reload();
+    }).catch((err) => {
+        alert.innerText = err.message;
+        alert.style.display = 'flex';
+        setTimeout(() => {
+            alert.style.display = 'none'
+        }, 7500)
     })
 
 })
@@ -195,6 +246,12 @@ editOpenAIForm.addEventListener('submit', async e => {
     }).then(() => {
         console.log('updated!')
         location.reload();
+    }).catch((err) => {
+        alert.innerText = err.message;
+        alert.style.display = 'flex';
+        setTimeout(() => {
+            alert.style.display = 'none'
+        }, 7500)
     })
 
 })

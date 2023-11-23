@@ -26,6 +26,24 @@ main {
   width: 100%;
 }
 
+main #alert {
+  display: none;
+  position: absolute;
+  z-index: 25;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 64px;
+  margin-right: 64px;
+  background: #ff6666;
+  color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  font-family: "Nunito", sans-serif;
+  padding: 16px 24px;
+  font-size: 18px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
 main dialog {
   position: absolute;
   top: 50%;
@@ -475,6 +493,19 @@ main #integrations-tab form .container button:hover {
 }
 
 @media (max-width: 400px) {
+  main dialog {
+    width: 85%;
+  }
+
+  main dialog form #submit {
+    width: 100%;
+    text-align: center;
+  }
+
+  main dialog form #google-btn img {
+    margin-right: 15%;
+  }
+
   main nav {
     padding: 48px 0px 48px;
   }
@@ -498,6 +529,10 @@ main #integrations-tab form .container button:hover {
 }
 
 @media (min-width: 401px) and (max-width: 767px) {
+  main dialog {
+    width: 75%;
+  }
+
   main nav {
     padding: 48px 0px 48px;
   }

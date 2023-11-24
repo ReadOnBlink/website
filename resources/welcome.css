@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;700&family=Nunito:wght@500;800&display=swap");
+
+html,
+body {
+  background: var(--bg);
+  color: white;
+  font-family: "Nunito", sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #120e1b;
+  --accent: #8c52ff;
+}
+
+main #menu {
+  display: none;
+  position: absolute;
+  z-index: 25;
+  background: var(--bg);
+  left: 100%;
+  transition: 0.5s ease;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+main #menu .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 56px 8px;
+}
+
+main #menu .controls h1 {
+  color: var(--accent);
+  font-size: 24px;
+}
+
+main #menu .controls span {
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main #menu .controls span:hover {
+  opacity: 0.75;
+}
+
+main #menu .buttons {
+  display: flex;
+  align-items: center;
+  padding: 0px 56px 0px;
+}
+
+main #menu .buttons #login-btn-mobile {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 10px 24px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  width: 50%;
+}
+
+main #menu .buttons #login-btn-mobile:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #menu .buttons #get-started-btn-mobile {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-left: 6.5px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+  width: 50%;
+}
+
+main #menu .buttons #get-started-btn-mobile:hover {
+  filter: brightness(1.1);
+}
+
+main nav {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+main nav h1 {
+  color: var(--accent);
+  font-size: 32px;
+}
+
+main nav #buttons {
+  display: flex;
+  align-items: center;
+}
+
+main nav #buttons span {
+  display: none;
+}
+
+main nav #buttons #login-btn-nav {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 10px 24px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main nav #buttons #login-btn-nav:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main nav #buttons #get-started-btn-nav {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-left: 6.5px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main nav #buttons #get-started-btn-nav:hover {
+  filter: brightness(1.1);
+}
+
+main .hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 64px;
+}
+
+main .hero h1 {
+  margin-top: 108px;
+  font-size: 48px;
+  margin-bottom: 72px;
+}
+
+main .hero .container {
+  display: flex;
+  align-items: center;
+}
+
+main .hero .container .card {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  opacity: 0.94;
+  background: rgba(140, 82, 255, 0.03);
+  height: 320px;
+  width: 320px;
+  margin: 6.5px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+main .hero .container .card:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main .hero .container .card img {
+  height: 144px;
+  width: 144px;
+  display: block;
+  margin: auto;
+  object-fit: contain;
+}
+
+main .hero .container .card h3 {
+  font-weight: 800;
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 8px;
+  margin-left: 23px;
+}
+
+main .hero .container .card p {
+  opacity: 50%;
+  font-size: 14px;
+  margin: 0;
+  margin-left: 23px;
+  margin-bottom: 23px;
+  margin-right: 23px;
+}
+
+main footer {
+  background: black;
+  display: flex;
+  align-items: center;
+  padding: 48px 0px 48px;
+  border-radius: 10px;
+  justify-content: space-evenly;
+}
+
+main footer h1 {
+  color: var(--accent);
+}
+
+main footer ul {
+  display: flex;
+  align-items: center;
+}
+
+main footer ul a {
+  text-decoration: none;
+  color: white;
+  opacity: 50%;
+  margin: 0px 16px 0px;
+  transition: 0.5s ease;
+}
+
+main footer ul a:hover {
+  opacity: 75%;
+}
+
+main footer ul button {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-left: 12px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main footer ul button:hover {
+  filter: brightness(1.1);
+}

@@ -722,10 +722,10 @@ goToSettingsBtn.addEventListener('click', () => {
 
 const helpGNewsBtn = document.getElementById('help-gnews-btn');
 helpGNewsBtn.addEventListener('click', () => {
-    location.href = '/resources.html';
+    location.href = '/resources/gnew.html';
 });
 
 const helpOpenAIBtn = document.getElementById('help-btn');
 helpOpenAIBtn.addEventListener('click', () => {
-    location.href = '/resources.html';
+    location.href = '/resources/openai.html';
 })

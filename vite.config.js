@@ -15,6 +15,7 @@ export default defineConfig({
         resourceGNews: resolve(__dirname, 'resources/gnews.html'),
         resourceOpenAI: resolve(__dirname, 'resources/openai.html'),
         privacy: resolve(__dirname, 'privacy.html'),
+        terms: resolve(__dirname, 'terms.html'),
       },
     },
   },

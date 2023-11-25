@@ -52,3 +52,8 @@ main .policy ol li a {
 main .policy ol li a:hover {
   text-decoration: underline;
 }
+
+main .policy ol li #email {
+  color: var(--accent);
+  cursor: pointer;
+}

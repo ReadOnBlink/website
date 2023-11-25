@@ -14,6 +14,7 @@ export default defineConfig({
         resourceWelcome: resolve(__dirname, 'resources/welcome.html'),
         resourceGNews: resolve(__dirname, 'resources/gnews.html'),
         resourceOpenAI: resolve(__dirname, 'resources/openai.html'),
+        privacy: resolve(__dirname, 'privacy.html'),
       },
     },
   },

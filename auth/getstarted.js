@@ -17,19 +17,29 @@ form.addEventListener('submit', (e) => {
     const email = form.email.value;
     const password = form.password.value;
 
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((cred) => {
-        console.log('user created with email!')
-        sendEmailVerification(auth.currentUser)
-        .then(() => {
-            console.log('verification email sent!')
-            updateProfile(auth.currentUser, {
-                displayName: username
-            }).then(() => {
-                console.log('displayName set!')
-                location.href = '/read.html';
+    if (document.getElementById('policy-check').checked) {
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((cred) => {
+            console.log('user created with email!')
+            sendEmailVerification(auth.currentUser)
+            .then(() => {
+                console.log('verification email sent!')
+                updateProfile(auth.currentUser, {
+                    displayName: username
+                }).then(() => {
+                    console.log('displayName set!')
+                    location.href = '/read.html';
+                }).catch((err) => {
+                    console.log(err.message);
+                    alert.innerText = err.message;
+                    alert.style.display = 'flex';
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                        alert.innerText = '';
+                    }, "7500")
+                })
             }).catch((err) => {
-                console.log(err.message);
+                console.log(err.message)
                 alert.innerText = err.message;
                 alert.style.display = 'flex';
                 setTimeout(() => {
@@ -46,15 +56,16 @@ form.addEventListener('submit', (e) => {
                 alert.innerText = '';
             }, "7500")
         })
-    }).catch((err) => {
-        console.log(err.message)
-        alert.innerText = err.message;
+    } else {
+        alert.innerText = 'To use Blink, you must agree to our policies';
         alert.style.display = 'flex';
         setTimeout(() => {
             alert.style.display = 'none';
             alert.innerText = '';
         }, "7500")
-    })
+    }
+
+    
 
 })
 

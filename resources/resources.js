@@ -27,3 +27,52 @@ window.addEventListener('load', () => {
     }
 
 })
+
+const loginBtn = document.getElementById('login-btn-nav');
+const getStartedBtn = document.getElementById('get-started-btn-nav');
+loginBtn.addEventListener('click', () => {
+
+    location.href = '/auth/login.html';
+
+})
+
+getStartedBtn.addEventListener('click', () => {
+
+    location.href = '/auth/getstarted.html';
+
+})
+
+const mobileMenuBtn = document.getElementById('mobile-menu');
+const mobileMenu = document.getElementById('menu');
+const closeMenuBtn = document.getElementById('close-menu-btn');
+
+mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.style.display = 'flex';
+    setTimeout(() => {
+        mobileMenuBtn.style.transform = 'scale(0.8)';
+        mobileMenu.style.left = '0';
+        mobileMenuBtn.style.transform = 'rotate(-90deg)';
+        closeMenuBtn.style.transform = 'rotate(-90deg)';
+    }, 50)
+})
+
+closeMenuBtn.addEventListener('click', () => {
+    mobileMenu.style.left = '100%';
+    setTimeout(() => {
+        mobileMenuBtn.style.transform = 'rotate(0deg)';
+        closeMenuBtn.style.transform = 'rotate(0deg)';
+        mobileMenuBtn.style.transform = 'scale(1)';
+        mobileMenu.style.display = 'none';
+    }, 250)
+})
+
+const loginBtnMobile = document.getElementById('login-btn-mobile');
+const getStartedBtnMobile = document.getElementById('get-started-btn-mobile');
+
+loginBtnMobile.addEventListener('click', () => {
+    location.href = '/auth/login.html';
+});
+
+getStartedBtnMobile.addEventListener('click', () => {
+    location.href = '/auth/getstarted.html';
+});

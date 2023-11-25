@@ -112,6 +112,34 @@ main form #submit:hover {
   filter: brightness(1.1);
 }
 
+main form .policy {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  border-radius: 5px;
+  background: transparent;
+  border: none;
+  padding: 0px;
+}
+
+main form .policy input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  width: fit-content;
+  opacity: 50%;
+  font-weight: 500;
+  color: white;
+  transition: 0.5s ease;
+  margin-right: 8px;
+}
+
+main form .policy label {
+  font-size: 12px;
+}
+
 main form a {
   text-decoration: none;
   color: white;
@@ -184,25 +212,25 @@ main form #google-btn img {
 @media (max-width: 400px) {
   main form div {
     padding: 16px 16px;
-    width: 115%;
+    width: 100%;
   }
 
   main form #submit {
     padding: 16px 16px;
     font-size: 14px;
-    width: 115%;
+    width: 100%;
   }
 
   main form a {
-    width: 115%;
+    width: 100%;
   }
 
   main form #google {
-    width: 115%;
+    width: 100%;
   }
 
   main form #google-btn {
-    width: 115%;
+    width: 100%;
   }
 
   main form #google-btn img {

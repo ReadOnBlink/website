@@ -19,6 +19,7 @@ body {
 
 main #menu {
   display: none;
+  flex-direction: column;
   position: absolute;
   z-index: 25;
   background: var(--bg);
@@ -169,6 +170,22 @@ main .hero h1 {
   margin-bottom: 72px;
 }
 
+main .hero #gnews-title {
+  margin-bottom: 0px;
+}
+
+main .hero #desc {
+  margin-bottom: 32px;
+}
+
+main .hero ol {
+  padding-bottom: 168px;
+}
+
+main .hero ol li {
+  font-size: 20px;
+}
+
 main .hero .container {
   display: flex;
   align-items: center;
@@ -265,4 +282,96 @@ main footer ul button {
 
 main footer ul button:hover {
   filter: brightness(1.1);
+}
+
+@media (max-width: 400px) {
+  main nav {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    justify-content: space-between;
+  }
+
+  main nav h1 {
+    margin-left: 48px;
+    font-size: 24px;
+  }
+
+  main nav #buttons span {
+    display: flex;
+    margin-right: 48px;
+    cursor: pointer;
+    transition: 0.5s ease;
+  }
+
+  main nav #buttons span:hover {
+    opacity: 0.75;
+  }
+
+  main nav #buttons #get-started-btn-nav {
+    display: none;
+  }
+
+  main nav #buttons #login-btn-nav {
+    display: none;
+  }
+
+  main .hero {
+    flex-direction: column;
+  }
+
+  main .hero h1 {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  main .hero #desc {
+    text-align: center;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  main .hero ol {
+    padding-bottom: 8px;
+  }
+
+  main .hero ol li {
+    font-size: 18px;
+    margin-left: 16px;
+    margin-right: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  main .hero ol li a {
+    text-decoration: none;
+    color: var(--accent);
+  }
+
+  main .hero ol li a:hover {
+    text-decoration: underline;
+  }
+
+  main .hero .container {
+    flex-direction: column;
+  }
+
+  main footer {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  main footer ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  main footer ul a,
+  button {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
 }

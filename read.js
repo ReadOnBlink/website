@@ -198,14 +198,18 @@ const menu = document.querySelector('aside');
 const closeMenuBtn = document.getElementById('close-menu');
 
 menuBtn.addEventListener('click', () => {
+    menu.style.display = 'flex';
     menu.style.right = '0';
 });
 
 closeMenuBtn.addEventListener('click', () => {
     let width = screen.width;
-    if (width <= 400) {
+    if (width <= 430) {
         menu.style.right = '-100%';
-    } else if (width >= 401 && width <= 767) {
+        setTimeout(() => {
+            menu.style.display = 'none';
+        }, 500);
+    } else if (width >= 431 && width <= 767) {
         menu.style.right = '-50%';
     } else {
         menu.style.right = '-30%';
@@ -268,6 +272,9 @@ latestNewsBtn.addEventListener('click', async e => {
     }
 
     menu.style.right = '-100%';
+    setTimeout(() => {
+        menu.style.display = 'none';
+    }, 500);
 
 });
 
@@ -655,6 +662,9 @@ mobileSearchBtn.addEventListener('click', async e => {
     }
 
     menu.style.right = '-100%';
+    setTimeout(() => {
+        menu.style.display = 'none';
+    }, 500);
     sessionStorage.setItem('backTo', 'search');
 
 });

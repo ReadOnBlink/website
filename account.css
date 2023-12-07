@@ -511,7 +511,7 @@ main #integrations-tab form .container button:hover {
   filter: brightness(1.25);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   main dialog {
     width: 85%;
   }
@@ -547,7 +547,7 @@ main #integrations-tab form .container button:hover {
   }
 }
 
-@media (min-width: 401px) and (max-width: 767px) {
+@media (min-width: 431px) and (max-width: 767px) {
   main dialog {
     width: 75%;
   }

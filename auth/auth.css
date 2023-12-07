@@ -209,7 +209,7 @@ main form #google-btn img {
   margin-right: 25%;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   main form div {
     padding: 16px 16px;
     width: 100%;

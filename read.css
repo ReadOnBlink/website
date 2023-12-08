@@ -833,6 +833,12 @@ main #app #search-container article p {
 }
 
 @media (max-width: 430px) {
+  main #onboarding #alert {
+    top: 0;
+    height: fit-content;
+    margin-top: 16px;
+  }
+
   main aside {
     right: -100%;
     width: 100%;

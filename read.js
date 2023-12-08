@@ -197,9 +197,13 @@ const menuBtn = document.getElementById('menu-btn');
 const menu = document.querySelector('aside');
 const closeMenuBtn = document.getElementById('close-menu');
 
+menu.style.display = 'none';
+
 menuBtn.addEventListener('click', () => {
     menu.style.display = 'flex';
-    menu.style.right = '0';
+    setTimeout(() => {
+        menu.style.right = '0';
+    }, 50);
 });
 
 closeMenuBtn.addEventListener('click', () => {
@@ -301,6 +305,16 @@ backToNewsBtn.addEventListener('click', () => {
         searchContainer.style.display = 'flex';
         articleWindow.style.display = 'none';
     
+        const UIHeader = document.querySelector('header');
+        UIHeader.style.display = 'flex';
+    
+        document.title = 'Blink - For You';
+    } else if (sessionStorage.getItem('backTo') === 'foryou') {
+        latestNewsContainer.style.display = 'none';
+        newsfeed.style.display = 'flex';
+        articleWindow.style.display = 'none';
+        searchContainer.style.display = 'none';
+
         const UIHeader = document.querySelector('header');
         UIHeader.style.display = 'flex';
     
@@ -723,6 +737,8 @@ blinkBtn.addEventListener('click', () => {
     const switchBtn = document.getElementById('switch-to-latest-btn');
     switchBtn.innerText = 'Latest Stories';
 
+    sessionStorage.setItem('backTo', 'foryou');
+
 })
 
 const goToSettingsBtn = document.getElementById('settings-btn');
@@ -732,10 +748,12 @@ goToSettingsBtn.addEventListener('click', () => {
 
 const helpGNewsBtn = document.getElementById('help-gnews-btn');
 helpGNewsBtn.addEventListener('click', () => {
-    location.href = '/resources/gnew.html';
+    window.open('/resources/gnews.html', '_blank')
+    // location.href = '/resources/gnews.html';
 });
 
 const helpOpenAIBtn = document.getElementById('help-btn');
 helpOpenAIBtn.addEventListener('click', () => {
-    location.href = '/resources/openai.html';
+    window.open('/resources/openai.html', '_blank');
+    // location.href = '/resources/openai.html';
 })

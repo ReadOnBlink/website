@@ -496,7 +496,9 @@ async function getNews(key, preferences) {
                         const articleTitle = document.getElementById('article-title');
                         articleTitle.innerText = data.articles[i]['title'];
                         const publishDate = document.getElementById('publishDate');
-                        publishDate.innerText = data.articles[i]['publishedAt'];
+                        let dateToDisplay = new Date(data.articles[i]['publishedAt']);
+                        console.log('This is the formatted date: ', dateToDisplay);
+                        publishDate.innerText = dateToDisplay;
                         const sourceText = document.getElementById('sourceText');
                         sourceText.href = data.articles[i]['url'];
                         const articleDescription = document.getElementById('article-description');
@@ -563,9 +565,17 @@ moreInfoBtn.addEventListener('click', () => {
             .catch((error) => {
               // Handle any errors here
               console.error('Error:', error);
+              alert('Error', error);
             });
     } else {
-        console.log('user hasnt integrated openai!');
+        console.log('error with openai');
+        const btn = document.getElementById('openai-info-btn');
+        btn.style.backgroundColor = 'red';
+        btn.innerText = "You Haven't Integrated OpenAI";
+        setTimeout(() => {
+            btn.style.backgroundColor = 'var(--accent)';
+            btn.innerText = 'Learn More';
+        }, 5000);
     }
 
 })
@@ -756,4 +766,23 @@ const helpOpenAIBtn = document.getElementById('help-btn');
 helpOpenAIBtn.addEventListener('click', () => {
     window.open('/resources/openai.html', '_blank');
     // location.href = '/resources/openai.html';
+})
+
+const shareBtn = document.getElementById('shareBtn');
+shareBtn.addEventListener('click', async (e) => {
+
+    e.preventDefault();
+
+    console.log('starting share!');
+
+    try {
+        const title = document.querySelector('#article-title').innerText;
+        const date = document.querySelector('#publishDate').innerText;
+        const description = document.querySelector('#article-description').innerText;
+        await navigator.share({ title: `${title} - Blink`, url: `https://blink-20403.web.app/share?title=${title}&date=${date}&description=${description}`});
+        console.log('data was shared!');
+    } catch (err) {
+        console.log(err)
+    }
+
 })

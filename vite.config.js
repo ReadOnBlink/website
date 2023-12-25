@@ -16,6 +16,7 @@ export default defineConfig({
         resourceOpenAI: resolve(__dirname, 'resources/openai.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         terms: resolve(__dirname, 'terms.html'),
+        share: resolve(__dirname, 'share.html'),
       },
     },
   },

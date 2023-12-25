@@ -1,0 +1,331 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;700&family=Nunito:wght@500;800&display=swap");
+
+html,
+body {
+  background: var(--bg);
+  color: white;
+  font-family: "Nunito", sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #120e1b;
+  --accent: #8c52ff;
+}
+
+main #menu {
+  display: none;
+  position: absolute;
+  z-index: 30;
+  background: var(--bg);
+  left: 100%;
+  transition: 0.5s ease;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+}
+
+main #menu .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 56px 8px;
+}
+
+main #menu .controls h1 {
+  color: var(--accent);
+  font-size: 24px;
+}
+
+main #menu .controls span {
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main #menu .controls span:hover {
+  opacity: 0.75;
+}
+
+main #menu .buttons {
+  display: flex;
+  align-items: center;
+  padding: 0px 56px 0px;
+}
+
+main #menu .buttons #login-btn-mobile {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 10px 24px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  width: 50%;
+}
+
+main #menu .buttons #login-btn-mobile:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main #menu .buttons #get-started-btn-mobile {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-left: 6.5px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+  width: 50%;
+}
+
+main #menu .buttons #get-started-btn-mobile:hover {
+  filter: brightness(1.1);
+}
+
+main nav {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+main nav h1 {
+  color: var(--accent);
+  font-size: 32px;
+}
+
+main nav #buttons {
+  display: flex;
+  align-items: center;
+}
+
+main nav #buttons span {
+  display: none;
+}
+
+main nav #buttons #login-btn-nav {
+  border-radius: 5px;
+  border: 1px solid rgba(140, 82, 255, 0.1);
+  color: white;
+  opacity: 0.94;
+  padding: 10px 24px;
+  background: rgba(140, 82, 255, 0.03);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 6.5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main nav #buttons #login-btn-nav:hover {
+  border: 1px solid rgba(140, 82, 255, 0.5);
+}
+
+main nav #buttons #get-started-btn-nav {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-left: 6.5px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+main nav #buttons #get-started-btn-nav:hover {
+  filter: brightness(1.1);
+}
+
+main .hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main .hero .content {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main .hero .content h1 {
+  font-size: 48px;
+  color: var(--accent);
+  margin-top: 64px;
+}
+
+main .hero .content span {
+  opacity: 50%;
+}
+
+main .hero .overlay {
+  position: fixed;
+  z-index: 25;
+  bottom: 0;
+  background: linear-gradient(0deg, #240047, transparent);
+  width: 100%;
+  padding: 96px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .hero .overlay h1 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 32px;
+}
+
+main .hero .overlay p {
+  opacity: 50%;
+}
+
+main .hero .overlay button {
+  border-radius: 5px;
+  color: white;
+  padding: 10px 24px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-top: 16px;
+}
+
+main .hero .overlay button:hover {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 430px) {
+  main nav {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    justify-content: space-between;
+  }
+
+  main nav h1 {
+    margin-left: 48px;
+    font-size: 24px;
+  }
+
+  main nav #buttons span {
+    display: flex;
+    margin-right: 48px;
+    cursor: pointer;
+    transition: 0.5s ease;
+  }
+
+  main nav #buttons span:hover {
+    opacity: 0.75;
+  }
+
+  main nav #buttons #get-started-btn-nav {
+    display: none;
+  }
+
+  main nav #buttons #login-btn-nav {
+    display: none;
+  }
+
+  main .hero {
+    flex-direction: column;
+  }
+
+  main .hero .content {
+    width: 77.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  main .hero .content h1 {
+    margin-top: 0;
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  main .hero .content span {
+    font-size: 14px;
+  }
+
+  main .hero .overlay h1 {
+    font-size: 24px;
+  }
+
+  main .hero .overlay p {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 431px) and (max-width: 767px) {
+  main .hero {
+    flex-direction: column;
+  }
+
+  main .hero .content {
+    width: 77.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  main .hero .content h1 {
+    margin-top: 48px;
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+
+  main .hero .content span {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  main .hero {
+    flex-direction: column;
+  }
+
+  main .hero .content {
+    width: 77.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1400px) {
+  main .hero {
+    flex-direction: column;
+  }
+
+  main .hero .content {
+    width: 77.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

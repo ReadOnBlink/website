@@ -188,6 +188,7 @@ main .hero .text #buttons {
   display: flex;
   align-items: center;
   margin-left: 397px;
+  margin-bottom: 180px;
 }
 
 main .hero .text #buttons #get-started-btn-hero {

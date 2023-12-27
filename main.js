@@ -10,7 +10,10 @@ mobileMenuBtn.addEventListener('click', () => {
     mobileMenu.style.left = '100%';
     mobileMenu.style.display = 'inline';
     mobileMenuBtn.style.transform = 'scale(0.8)';
-    mobileMenu.style.left = '0';
+    // mobileMenu.style.left = '0';
+    setTimeout(() => {
+        mobileMenu.style.left = '0';
+    }, 10);
     mobileMenuBtn.style.transform = 'rotate(-90deg)';
     closeMenuBtn.style.transform = 'rotate(-90deg)';
 })
@@ -64,3 +67,10 @@ const getStartedBtnFooter = document.getElementById('get-started-btn-footer');
 getStartedBtnFooter.addEventListener('click', () => {
     location.href = '/auth/getstarted.html';
 });
+
+const viewPublicationsBtn = document.getElementById('view-publications-btn-hero');
+viewPublicationsBtn.addEventListener('click', () => {
+
+    location.href = 'https://gnews.io'
+
+})

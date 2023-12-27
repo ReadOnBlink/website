@@ -284,7 +284,7 @@ main footer ul button:hover {
   filter: brightness(1.1);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   main nav {
     padding-top: 16px;
     padding-bottom: 16px;
@@ -356,6 +356,33 @@ main footer ul button:hover {
 
   main .hero .container {
     flex-direction: column;
+  }
+
+  main footer {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  main footer ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  main footer ul a,
+  button {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (min-width: 431px) and (max-width: 767px) {
+  main .hero .container {
+    flex-direction: column;
+  }
+
+  main .hero .container .card {
+    width: 100%;
   }
 
   main footer {

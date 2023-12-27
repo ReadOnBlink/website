@@ -953,8 +953,10 @@ main #app #search-container article p {
   }
 
   main #app header #label {
-    width: 100%;
+    width: 90%;
     word-wrap: break-word;
+    line-height: 48px;
+    margin-bottom: 8px;
   }
 
   main #app #news-container {

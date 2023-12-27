@@ -56,9 +56,36 @@ getStartedMenuBtn.addEventListener('click', () => {
 
 })
 
+const loginBtnNav = document.querySelector('#login-btn-nav');
+const getStartedBtnNav = document.querySelector('#get-started-btn-nav');
+
+loginBtnNav.addEventListener('click', () => {
+    location.href = '/auth/login.html';
+})
+
+getStartedBtnNav.addEventListener('click', () => {
+
+    location.href = '/auth/getstarted.html';
+
+})
+
 const startReadingBtn = document.querySelector('#cta-join-btn');
 startReadingBtn.addEventListener('click', () => {
 
     location.href = '/auth/getstarted.html';
+
+})
+
+const homeBtn = document.getElementById('home-btn')
+homeBtn.addEventListener('click', () => {
+
+    location.href = '/index.html';
+
+})
+
+const homeBtnMobile = document.getElementById('home-btn-mobile')
+homeBtnMobile.addEventListener('click', () => {
+
+    location.href = '/index.html';
 
 })

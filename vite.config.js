@@ -13,7 +13,6 @@ export default defineConfig({
         account: resolve(__dirname, 'account.html'),
         resourceWelcome: resolve(__dirname, 'resources/welcome.html'),
         resourceGNews: resolve(__dirname, 'resources/gnews.html'),
-        resourceOpenAI: resolve(__dirname, 'resources/openai.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         terms: resolve(__dirname, 'terms.html'),
         share: resolve(__dirname, 'share.html'),

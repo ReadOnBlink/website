@@ -257,27 +257,3 @@ editGNewsForm.addEventListener('submit', async e => {
     })
 
 })
-
-const editOpenAIForm = document.getElementById('edit-openai-form');
-editOpenAIForm.addEventListener('submit', async e => {
-
-    e.preventDefault();
-
-    const newKey = editOpenAIForm.new_openai_key.value;
-
-    const docRef = doc(db, 'users', auth.currentUser.uid);
-
-    await updateDoc(docRef, {
-        openai: newKey,
-    }).then(() => {
-        console.log('updated!')
-        location.reload();
-    }).catch((err) => {
-        alert.innerText = err.message;
-        alert.style.display = 'flex';
-        setTimeout(() => {
-            alert.style.display = 'none'
-        }, 7500)
-    })
-
-})

@@ -1,6 +1,7 @@
 import { app as firebase } from './firebase-config.js';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getFirestore, collection, doc, setDoc, getDocs, getDoc } from 'firebase/firestore'; 
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // check if firebase is connected
 console.log(firebase);
@@ -12,8 +13,21 @@ const db = getFirestore(firebase);
 var GNewsAPIKey;
 
 let latestNewsLoaded;
-let hasOpenAI;
-let openaiApiKey;
+
+var aiParam;
+
+async function getParam() {
+    const aiDocRef = doc(db, 'tooling', 'kR19VTNHvTxVw9FgxZYB');
+    const aiDocSnap = await getDoc(aiDocRef);
+
+    if (aiDocSnap.exists()) {
+        aiParam = aiDocSnap.data().key;
+    } else {
+        console.log('no doc found!');
+    }
+}
+
+getParam();
 
 // signout functionality
 const signOutBtn = document.querySelector('#sign-out-btn');
@@ -50,14 +64,6 @@ onAuthStateChanged(auth, async user => {
             appView.style.display = 'flex';
             onboardingView.style.display = 'none';
             navbar.style.display = 'flex';
-            if (!docSnap.data().openai || docSnap.data().openai === '') {
-                hasOpenAI = false;
-                console.log('openai status:', hasOpenAI)
-            } else {
-                hasOpenAI = true;
-                console.log('openai status:', hasOpenAI)
-                openaiApiKey = docSnap.data().openai;
-            }
         } else {
             console.log('user needs to onboard still!')
             onboardingView.style.display = 'flex';
@@ -131,66 +137,27 @@ onboardingInterestsForm.addEventListener('submit', (e) => {
 });
 
 const onboardingGNewsForm = document.getElementById('gnews-form-onboarding');
-onboardingGNewsForm.addEventListener('submit', (e) => {
+onboardingGNewsForm.addEventListener('submit', async e => {
 
     e.preventDefault();
 
     const gnewsView = document.getElementById('gnews');
-    const openaiView = document.getElementById('openai');
 
     let value = onboardingGNewsForm.gnews_api_key.value;
     if (!value || value === '') {
         alert('Please Enter A GNews API Key!');
     } else {
         sessionStorage.setItem('gnewsOnboardingKey', value);
-        gnewsView.style.display = 'none';
-        openaiView.style.display = 'flex';
-    }
-
-})
-
-const openaiForm = document.getElementById('openai-form-onboarding');
-openaiForm.addEventListener('submit', async e => {
-
-    e.preventDefault();
-
-    const key = openaiForm.openai_api_key.value;
-
-    try {
         await setDoc(doc(db, 'users', auth.currentUser.uid), {
             gnews: sessionStorage.getItem('gnewsOnboardingKey'),
-            openai: key,
             preferences: onboardingUserInterests,
             uid: auth.currentUser.uid,
             username: auth.currentUser.displayName
         });
-    } catch (error) {
-        console.error("Error writing to Firestore:", error);
+        gnewsView.style.display = 'none';
+        location.reload();
     }
 
-    console.log('document added!')
-
-    location.reload();
-
-})
-
-const skipBtn = document.getElementById('skip-btn');
-skipBtn.addEventListener('click', async e => {
-    e.preventDefault();
-
-    const key = '';
-
-    await setDoc(doc(db, 'users', auth.currentUser.uid), {
-        gnews: sessionStorage.getItem('gnewsOnboardingKey'),
-        openai: key,
-        preferences: onboardingUserInterests,
-        uid: auth.currentUser.uid,
-        username: auth.currentUser.displayName
-    });
-
-    console.log('document added!')
-
-    location.reload();
 })
 
 const menuBtn = document.getElementById('menu-btn');
@@ -515,67 +482,25 @@ async function getNews(key, preferences) {
 }
 
 const moreInfoBtn = document.getElementById('openai-info-btn');
-moreInfoBtn.addEventListener('click', () => {
+moreInfoBtn.addEventListener('click', async e => {
 
-    if (hasOpenAI === true) {
-        console.log('calling GPT3!');
-        let contentToExplain = document.getElementById('article-title').innerText;
-        const endpoint = 'https://api.openai.com/v1/chat/completions';
-        const data = {
-            "model": "gpt-3.5-turbo",
-            "messages": [
-              {
-                "role": "system",
-                "content": "You are a researcher and writer specializing in giving out context."
-              },
-              {
-                "role": "user",
-                "content": `Please give me extra context on this overall subject. It doesn't have to be current information: ${contentToExplain}`
-              },
-              {
-                "role": "assistant",
-                "content": "Don't say that you only have information up until 2022, just say the content"
-              },
-            ]
-          }
-          
-          // Set up the fetch request
-          fetch(endpoint, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${openaiApiKey}`,
-            },
-            body: JSON.stringify(data),
-          })
-            .then((response) => {
-            //   if (!response.ok) {
-            //     throw new Error('Network response was not ok');
-            //   }
-              return response.json();
-            })
-            .then((data) => {
-              // Handle the response data here
-              console.log(data.choices[0].text); // This will contain the generated text
-              const card = document.getElementById('ai-info-card');
-              card.innerText = data.choices[0].text;
-              card.style.display = 'flex';
-              moreInfoBtn.style.display = 'none';
-            })
-            .catch((error) => {
-              // Handle any errors here
-              console.error('Error:', error);
-              alert('Error', error);
-            });
-    } else {
-        console.log('error with openai');
-        const btn = document.getElementById('openai-info-btn');
-        btn.style.backgroundColor = 'red';
-        btn.innerText = "You Haven't Integrated OpenAI";
-        setTimeout(() => {
-            btn.style.backgroundColor = 'var(--accent)';
-            btn.innerText = 'Learn More';
-        }, 5000);
+    let ui = document.getElementById('ai-info-card');
+    ui.style.display = 'flex';
+
+    const genAI = new GoogleGenerativeAI(aiParam);
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" })
+
+    let descriptionToPass = document.getElementById('article-description').innerText;
+    
+    const prompt = `Can you provide some additional context about the overall topic of this description: ${descriptionToPass}`;
+    const result = await model.generateContentStream(prompt);
+
+    let text = '';
+
+    for await (const chunk of result.stream) {
+        const chunkText = chunk.text();
+        text += chunkText;
+        document.getElementById('ai-info-text').innerText = text;
     }
 
 })
@@ -761,12 +686,6 @@ helpGNewsBtn.addEventListener('click', () => {
     window.open('/resources/gnews.html', '_blank')
     // location.href = '/resources/gnews.html';
 });
-
-const helpOpenAIBtn = document.getElementById('help-btn');
-helpOpenAIBtn.addEventListener('click', () => {
-    window.open('/resources/openai.html', '_blank');
-    // location.href = '/resources/openai.html';
-})
 
 const shareBtn = document.getElementById('shareBtn');
 shareBtn.addEventListener('click', async (e) => {

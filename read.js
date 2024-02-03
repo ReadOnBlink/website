@@ -682,6 +682,10 @@ blinkBtn.addEventListener('click', () => {
 
     document.title = 'Blink - For You';
 
+    document.getElementById('ai-info-text').innerText = '';
+    document.getElementById('ai-info-card').style.display = 'none';
+    document.getElementById('openai-info-btn').style.display = 'block';
+
     sessionStorage.setItem('backTo', 'foryou');
 
 })

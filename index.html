@@ -7,12 +7,25 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link href="https://unpkg.com/movement.css/movement.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Your news, your way, in a Blink! Understand the news with powerful AI and a seamless, no-ad experience.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:url" content="https://blink-20403.web.app">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blink">
+    <meta property="og:description" content="Your news, your way, in a Blink!">
+    <meta property="og:image" content="https://opengraph.b-cdn.net/production/documents/93f4d6b1-d2c8-4ebf-a3bc-6e425f254248.png?token=QfgWKeQboUxzmqfZaggqIPUTBVrwGGBE5LZ3snI-BpI&height=630&width=1200&expires=33243002356">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="blink-20403.web.app">
+    <meta property="twitter:url" content="https://blink-20403.web.app">
+    <meta name="twitter:title" content="Blink">
+    <meta name="twitter:description" content="Your news, your way, in a Blink!">
+    <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/documents/93f4d6b1-d2c8-4ebf-a3bc-6e425f254248.png?token=QfgWKeQboUxzmqfZaggqIPUTBVrwGGBE5LZ3snI-BpI&height=630&width=1200&expires=33243002356">
     <title>Blink</title>
   </head>
   <body>
 
-    <main>
-      <div id="menu">
+    <main itemscope itemtype="https://schema.org/WebPage">
+      <div id="menu" itemprop="breadcrumb">
         <div class="controls">
           <h1>blink.</h1>
           <span id="close-menu-btn" class="material-symbols-outlined">close</span>
@@ -22,7 +35,7 @@
           <button id="get-started-btn-mobile">Get started</button>
         </div>
       </div>
-      <nav>
+      <nav itemprop="breadcrumb">
         <h1>blink.</h1>
         <div id="buttons">
           <button id="login-btn-nav">Login</button>
@@ -30,7 +43,7 @@
           <span id="mobile-menu" class="material-symbols-outlined">menu</span>
         </div>
       </nav>
-      <section class="hero" data-m="bounce-up">
+      <section class="hero" data-m="bounce-up" itemscope itemtype="SoftwareApplication" itemprop="mainContentOfPage">
         <div class="text">
           <h1>News in the <span>blink</span><br>of an eye</h1>
           <p>Understand the world faster. Blink is your AI-powered platform for staying informed, intelligently. In a world where time is precious, we’ve redefined the way you consume news. </p>
@@ -48,22 +61,22 @@
           </div> -->
         </div>
         <div class="render">
-          <img src="/assets/renders/hero-render.png">
+          <img itemprop="primaryImageOfPage" alt="Blink on mobile" src="/assets/renders/hero-render.png">
         </div>
       </section>
-      <section id="newspapers">
-        <img src="/assets/logos/la-times.png" alt="">
-        <img src="/assets/logos/cnn.png" alt="">
-        <img src="/assets/logos/bbc.png" alt="">
-        <img src="/assets/logos/ny-times.png" alt="">
-        <img src="/assets/logos/nbc.png" alt="">
+      <section id="newspapers" >
+        <img src="/assets/logos/la-times.png" alt="Los Angeles Times logo">
+        <img src="/assets/logos/cnn.png" alt="CNN logo">
+        <img src="/assets/logos/bbc.png" alt="BBC logo">
+        <img src="/assets/logos/ny-times.png" alt="New York Times logo">
+        <img src="/assets/logos/nbc.png" alt="NBC logo">
       </section>
       <section id="feature-section">
         <h2>The more you use <span>blink,</span><br>the more you <span>discover</span></h2>
         <div id="features">
           <div id="row">
             <div id="feature">
-              <img src="/assets/icons/explain.png">
+              <img alt="Blink's news explanation button to get AI-powered context" src="/assets/icons/explain.png">
               <p>News explaination</p>
               <span>Understand what you’re reading with additional context through powerful AI.</span>
             </div>
@@ -73,7 +86,7 @@
               <span>Stay informed on-the-go with narrated versions of top stories right in your pocket</span>
             </div> -->
             <div id="feature">
-              <img src="/assets/icons/curator.png">
+              <img alt="Blink's curated news feed to match user's to articles they love" src="/assets/icons/curator.png">
               <p>Curated feed</p>
               <span>Read what you want without needing to sift through hundreds of articles</span>
             </div>
@@ -85,12 +98,12 @@
               <span>Don’t conform to the radio, let the radio conform to your feed</span>
             </div> -->
             <div id="feature">
-              <img src="/assets/icons/privacy.png">
+              <img alt="Blink's lock icon for user data security and a privacy-first approach" src="/assets/icons/privacy.png">
               <p>Privacy</p>
               <span>None of your data will ever leave our servers and we will never sell any data</span>
             </div>
             <div id="feature">
-              <img src="/assets/icons/circular-pattern.png">
+              <img alt="A seamless experience with no ads and hassle across multiple devices on Blink" src="/assets/icons/circular-pattern.png">
               <p>Seamless experience</p>
               <span>No fussing around with clunky interfaces and annoying pop-ups</span>
             </div>

@@ -17,6 +17,7 @@ body {
 :root {
   --bg: #120e1b;
   --accent: #8c52ff;
+  color-scheme: dark;
 }
 
 main {
